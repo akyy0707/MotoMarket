@@ -1,23 +1,23 @@
-const xeArr = [
-    {
-      image: '/image/YAMAHA NVX/NVXden.png',
-      name: 'YAMAHA NVX',
-      description: 'A reliable and fuel-efficient sedan',
-      type: 'tay ga',
-      brand: 'YAMAHA',
-      price: 20000
-    },
-    {
-      image: '/image/Janus/Janusden.png',
-      name: 'Janus',
-      description: 'A powerful and stylish sports car',
-      type: 'tay ga',
-      brand: 'YAMAHA',
-      price: 35000
-    },
-];
+// const xeArr = [
+//     {
+//       image: '/image/YAMAHA NVX/NVXden.png',
+//       name: 'YAMAHA NVX',
+//       description: 'A reliable and fuel-efficient sedan',
+//       type: 'tay ga',
+//       brand: 'YAMAHA',
+//       price: 20000
+//     },
+//     {
+//       image: '/image/Janus/Janusden.png',
+//       name: 'Janus',
+//       description: 'A powerful and stylish sports car',
+//       type: 'tay ga',
+//       brand: 'YAMAHA',
+//       price: 35000
+//     },
+// ];
 
-localStorage.setItem('xeArr', JSON.stringify(xeArr));
+// localStorage.setItem('xeArr', JSON.stringify(xeArr));
 
 // const acc = [
 //     {

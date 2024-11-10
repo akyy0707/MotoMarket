@@ -69,11 +69,11 @@
             <div class="danhmuc-content">
                 <h3>Tìm kiếm nâng cao</h3><br>
                 <ul>
-                    <li>Tất cả</li>
-                    <li>Xe tay ga</li>
-                    <li>Xe số</li>
-                    <li>Xe Yamaha</li>
-                    <li>Xe Honda</li>
+                    <li onclick="advancedSearch(1)" id="tatca">Tất cả</li>
+                    <li onclick="advancedSearch(2)" id="tayga">Xe tay ga</li>
+                    <li onclick="advancedSearch(3)" id="xeso">Xe số</li>
+                    <li onclick="advancedSearch(4)" id="yamaha">Xe Yamaha</li>
+                    <li onclick="advancedSearch(5)" id="honda">Xe Honda</li>
                 </ul>
                 <div class="gia">
                     <p>Giá: </p>
@@ -87,15 +87,15 @@
         </div>
 
         <div class="banner-content">
-            <div class="carousel">
-                <div class="carousel-slide"><img src="/image/z6004256200537_c83792dd08c289483ff82b391cc5893d.jpg" alt="Image 1"></div>
-                <div class="carousel-slide"><img src="/image/z6004315394237_9c92140f8638df76141248641a5b05c8.jpg" alt="Image 2"></div>
-                <div class="carousel-slide"><img src="/image/image.png" alt="Image 3"></div>
+            <div class="banner">
+                <div class="banner-slide"><img src="/image/banner1.jpg" alt="Image 1"></div>
+                <div class="banner-slide"><img src="/image/banner2.jpg" alt="Image 2"></div>
+                <div class="banner-slide"><img src="/image/banner3.jpg" alt="Image 3"></div>
             </div>
-            <div class="carousel-indicators">
-                <span class="indicator" onclick="goToSlide(0)"></span>
-                <span class="indicator" onclick="goToSlide(1)"></span>
-                <span class="indicator" onclick="goToSlide(2)"></span>
+            <div class="bannercham">
+                <span class="cham" onclick="goToBanner(0)"></span>
+                <span class="cham" onclick="goToBanner(1)"></span>
+                <span class="cham" onclick="goToBanner(2)"></span>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
             <div id="items-container">
                 
             </div>
-            <div class="pagination" id="pagination">
+            <div class="sotrang" id="sotrang">
 
             </div>
         </div>
@@ -117,8 +117,8 @@
         <div class="footer-content">
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> 157 Nguyễn Gia Trí, phường 25, quận Bình Thạnh</p>
-                <p><i class="fas fa-envelope"></i> Xetoyscompany@gmail.com</p>
-                <p><i class="fas fa-phone"></i> 0966572407</p>
+                <p><i class="fas fa-envelope"></i>Xetoyscompany@gmail.com</p>
+                <p><i class="fas fa-phone"></i>0966572407</p>
             </div>
             <div class="footer-links">
                 <p>&copy; 2024 Online Store. All rights reserved.</p>
@@ -167,6 +167,6 @@
     <script src="/js/banner.js"></script>
     <script src="/js/trang.js"></script>    
     <script src="/js/giohang.js"></script>
+    <script src="/js/sanpham.js"></script>
 </body>
-
 </html>

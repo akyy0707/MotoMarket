@@ -1,11 +1,11 @@
-const registerOverlay = document.getElementById("register-overlay");
+const reoverlay = document.getElementById("register-overlay");
 
 document.querySelector(".dangky").onclick = function() {
-    registerOverlay.classList.remove("hidden");
+    reoverlay.classList.remove("hidden");
 }
 
 function closeRegister() {
-    registerOverlay.classList.add("hidden");
+    reoverlay.classList.add("hidden");
 }
 
 document.querySelector(".register-btn").onclick = function() {

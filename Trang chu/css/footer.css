@@ -3,38 +3,39 @@
     width: 100%;
     height: 3px;
 }
-.footer {
+
+.footer{
     background-color: #fffffff1;
     padding: 20px;
     color: #000000;
     text-align: center;
 }
 
-.footer-content {
+.footer-content{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.contact-info, .footer-links, .company-info {
+.contact-info, .footer-links, .company-info{
     margin: 10px 0;
 }
 
-.contact-info p, .footer-links nav a, .company-info p {
+.contact-info p, .footer-links nav a, .company-info p{
     margin: 5px 0;
 }
 
-.footer-links nav a {
+.footer-links nav a{
     color: #000000;
     text-decoration: none;
     margin: 0 10px;
 }
 
-.footer-links nav a:hover {
+.footer-links nav a:hover{
     text-decoration: underline;
 }
 
-.company-info img {
+.company-info img{
     width: 150px;
     height: auto;
 }

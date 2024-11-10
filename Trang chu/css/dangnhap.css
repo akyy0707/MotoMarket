@@ -1,4 +1,4 @@
-.overlay {
+.overlay{
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.form-dangnhap {
+.form-dangnhap{
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -20,11 +20,11 @@
     text-align: center;
 }
 
-.form-dangnhap h2 {
+.form-dangnhap h2{
     margin-bottom: 20px;
 }
 
-.form-dangnhap input {
+.form-dangnhap input{
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -32,7 +32,7 @@
     border-radius: 5px;
 }
 
-.login-btn, .close-btn {
+.login-btn, .close-btn{
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -44,10 +44,10 @@
     font-size: 16px;
 }
 
-.close-btn {
+.close-btn{
     background-color: red;
 }
 
-.hidden {
+.hidden{
     display: none;
 }

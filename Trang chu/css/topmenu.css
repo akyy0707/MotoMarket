@@ -6,7 +6,7 @@
     position: absolute;
 }
 
-#topmenu-content {
+#topmenu-content{
     display: flex;
     height: 100%;
     align-items: center;
@@ -44,7 +44,7 @@
     outline: none;
 }
 
-.search-btn {
+.search-btn{
     background-color: #00000027;
     height: 30px;
     width: 50px;
@@ -54,11 +54,11 @@
 
 .search-btn:hover{
     cursor: pointer;
-    background-color: blue;
+    background-color: #007bff;
     color: white;
 }
 
-.shop {
+.shop{
     height: 50px;
     width: 80px;
     display: flex;
@@ -66,7 +66,7 @@
     align-items: center;
     margin: 0px 100px;
 }
-.shop i {
+.shop i{
     font-size: 30px;
     cursor: pointer;
     position: relative;

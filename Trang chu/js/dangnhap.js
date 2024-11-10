@@ -1,13 +1,13 @@
-const loginOverlay = document.getElementById("login-overlay");
+const overlay = document.getElementById("login-overlay");
 
 let giohang = false;
 
 document.querySelector(".dangnhap").onclick = function() {
-    loginOverlay.classList.remove("hidden");
+    overlay.classList.remove("hidden");
 }
 
 function closeLogin() {
-    loginOverlay.classList.add("hidden");
+    overlay.classList.add("hidden");
 }
 
 function successLogin(){

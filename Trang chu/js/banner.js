@@ -1,26 +1,26 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const indicators = document.querySelectorAll('.indicator');
+let currentBanner = 0;
+const banner = document.querySelectorAll('.banner-slide');
+const cham = document.querySelectorAll('.cham');
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.style.display = i === index ? 'block' : 'none';
+function showBanner(index) {
+    banner.forEach((banner, i) => {
+        banner.style.display = i === index ? 'block' : 'none';
     });
-    indicators.forEach((indicator, i) => {
-        indicator.classList.toggle('active', i === index);
+    cham.forEach((cham, i) => {
+        cham.classList.toggle('active', i === index);
     });
 }
 
-function goToSlide(index) {
-    currentSlide = index;
-    showSlide(currentSlide);
+function goToBanner(index) {
+    currentBanner = index;
+    showBanner(currentBanner);
 }
 
 function autoSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+    currentBanner = (currentBanner + 1) % banner.length;
+    showBanner(currentBanner);
 }
 
 setInterval(autoSlide, 3000);
 
-showSlide(currentSlide);
+showBanner(currentBanner);

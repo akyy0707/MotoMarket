@@ -16,7 +16,7 @@
     position: relative;
 }
 
-.contentitem {
+.contentitem{
     float: left;
     border: solid 1px gray;
     overflow: hidden;
@@ -31,7 +31,7 @@
     height: 300px;
 }
 
-.contentitem img {
+.contentitem img{
     width: 100%;
     height: 60%;
 }
@@ -47,7 +47,7 @@
     margin-left: 10px;
 } 
 
-.pagination {
+.sotrang{
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -57,7 +57,7 @@
     right: 50%;
 }
 
-.pagination button {
+.sotrang button{
     border: 1px solid #000;
     background-color: #ffffff;
     color: #000;
@@ -67,12 +67,12 @@
     transition: background-color 0.3s;
 }
 
-.pagination button.active {
+.sotrang button.active{
     background-color: #007bff;
     color: #ffffff;
 }
 
-.pagination button:hover {
+.sotrang button:hover{
     background-color: #007bff;
     color: #ffffff;
 }

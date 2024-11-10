@@ -31,7 +31,6 @@
     padding: 10px;
     width: 300px;
     z-index: 1;
-
     left: 10px;
 }
 
@@ -92,16 +91,16 @@
 }
 
 .rightheader .dangnhap:hover{
-    background-color: blue;
+    background-color: #007bff;
     cursor: pointer;
 }
 
 .rightheader .dangky:hover{
-    background-color: blue;
+    background-color: #007bff;
     cursor: pointer;
 }
 
 .rightheader .dangxuat:hover{
-    background-color: blue;
+    background-color: #007bff;
     cursor: pointer;
 }

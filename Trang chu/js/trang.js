@@ -1,23 +1,96 @@
 const itemsPerPage = 8;
 let currentPage = 1;
 let items = [];
-let filteredItems = []; // Mảng để lưu các kết quả tìm kiếm
+let filteredItems = [];
 
-function setItem() {
-    const xe = JSON.parse(localStorage.getItem('xeArr')) || [];
+const xe = JSON.parse(localStorage.getItem('xeArr')) || [];
 
+document.getElementById("tatca").classList.add('active');
+
+function advancedSearch(index) {
+    console.log(index);
+    filteredItems = [];
+    items = [];
+
+    document.querySelectorAll('.danhmuc li').forEach(li => li.classList.remove('active'));
+
+    switch(index) {
+        case 1:
+            setItem1();
+            document.getElementById("search-box").value = '';
+            document.getElementById("tatca").classList.add('active');
+            break;
+        case 2:
+            setItem2("tay ga");
+            searchItems();
+            document.getElementById("tayga").classList.add('active');
+            break;
+        case 3:
+            setItem2("xe so");
+            searchItems();
+            document.getElementById("xeso").classList.add('active');
+            break;
+        case 4:
+            setItem3("YAMAHA");
+            searchItems();
+            document.getElementById("yamaha").classList.add('active');
+            break;
+        case 5:
+            setItem3("HONDA");
+            searchItems();
+            document.getElementById("honda").classList.add('active');
+            break;
+    }
+
+    currentPage = 1;
+    showItems();
+    showTrang();
+}
+
+function setItem1(){
     xe.forEach(item => {
-        const i = `<div class="contentitem">
+        const itemJSON = encodeURIComponent(JSON.stringify(item));
+        const i = `<div class="contentitem" onclick="sanpham('${itemJSON}')">
                       <img src="${item.image}" alt="${item.name}">
                       <p class="tenxe">${item.name}</p>
                       <p class="giaxe">Giá tiền: ${item.price} VNĐ</p>
                    </div>`;
         items.push(i);
     });
-    filteredItems = [...items]; // Khởi tạo giá trị ban đầu cho mảng filteredItems
+    filteredItems = [...items];
 }
 
-function renderItems() {
+function setItem2(type){
+    xe.forEach(item => {
+        if(item.type === type){
+            const itemJSON = encodeURIComponent(JSON.stringify(item));
+            const i = `<div class="contentitem" onclick="sanpham('${itemJSON}')">
+                          <img src="${item.image}" alt="${item.name}">
+                          <p class="tenxe">${item.name}</p>
+                          <p class="giaxe">Giá tiền: ${item.price} VNĐ</p>
+                       </div>`;
+            items.push(i);
+        }
+    });
+    filteredItems = [...items];
+}
+
+function setItem3(hang){
+    xe.forEach(item => {
+        if(item.brand === hang){
+            const itemJSON = encodeURIComponent(JSON.stringify(item));
+            const i = `<div class="contentitem" onclick="sanpham('${itemJSON}')">
+                          <img src="${item.image}" alt="${item.name}">
+                          <p class="tenxe">${item.name}</p>
+                          <p class="giaxe">Giá tiền: ${item.price} VNĐ</p>
+                       </div>`;
+            items.push(i);
+        }
+    });
+    filteredItems = [...items];
+}
+
+function showItems(){
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const itemsToDisplay = filteredItems.slice(start, end);
@@ -25,31 +98,48 @@ function renderItems() {
     document.getElementById("items-container").innerHTML = itemsToDisplay.join('');
 }
 
-function renderPagination() {
-    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-    let paginationHTML = '';
+function showTrang(){
+    const tongsotrang = Math.ceil(filteredItems.length / itemsPerPage);
+    let sotrang = '';
 
-    for (let i = 1; i <= totalPages; i++) {
-        paginationHTML += `<button class="${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+    for (let i = 1; i <= tongsotrang; i++) {
+        sotrang += `<button class="${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
     }
 
-    document.getElementById("pagination").innerHTML = paginationHTML;
+    document.getElementById("sotrang").innerHTML = sotrang;
 }
 
-function changePage(pageNumber) {
+function doiTrang(pageNumber){
     currentPage = pageNumber;
-    renderItems();
-    renderPagination();
+    showItems();
+    showTrang();
 }
+
+document.getElementById('giamin').addEventListener('input', searchItems);
+document.getElementById('giamax').addEventListener('input', searchItems);
+document.getElementById('search-box').addEventListener('input', searchItems);
 
 function searchItems() {
     const searchTerm = document.getElementById('search-box').value.toLowerCase();
-    filteredItems = items.filter(item => item.toLowerCase().includes(searchTerm));
-    currentPage = 1; // Reset về trang đầu tiên khi tìm kiếm
-    renderItems();
-    renderPagination();
+    const minPrice = parseFloat(document.getElementById('giamin').value) || 0;
+    const maxPrice = parseFloat(document.getElementById('giamax').value) || Infinity;
+
+    filteredItems = items.filter(item => {
+        const priceMatch = item.match(/Giá tiền: (\d+) VNĐ/);
+        const price = priceMatch ? parseFloat(priceMatch[1]) : 0;
+
+        return (
+            item.toLowerCase().includes(searchTerm) &&
+            price >= minPrice &&
+            price <= maxPrice
+        );
+    });
+
+    currentPage = 1;
+    showItems();
+    showTrang();
 }
 
-setItem();
-renderItems();
-renderPagination();
+setItem1();
+showItems();
+showTrang();
