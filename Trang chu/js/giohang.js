@@ -1,9 +1,11 @@
 
-document.getElementById("shop").onclick = function() {
-    if(giohang === true){
-        alert("Đã đăng nhập!!!");
-    }
-    else{
-        alert("Vui lòng đăng nhập để mua hàng!!!");
-    }
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const link = document.querySelector('.shop a');
+    
+    link.addEventListener('click', function(event) {        
+        if (!giohang) {
+            event.preventDefault();
+            alert("Vui lòng đăng nhập để mua hàng!!!");
+        }
+    });
+});

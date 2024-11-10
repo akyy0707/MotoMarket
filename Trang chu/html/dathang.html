@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Hàng</title>
+    <link rel="stylesheet" href="/Trang chu/css/dathang.css">
+    <link href="/fontawesome/css/all.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+    <div id="header">
+        <div class="leftheader">
+            <p>Hotline: 0914100004 | Gmail: Xetoyscompany@gmail.com</p>
+        </div>
+
+        <div class="khname" id="khname">
+        </div>
+
+        <div class="rightheader">
+            <a href="trangchu.html">
+                <div class="dangxuat" id="dangxuat" onclick="xoaCA()">
+                    <p>
+                        Đăng xuất
+                    </p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <form id="dathang">
+        <div class="container">
+            <div class="line"></div>
+            <div class="address-container">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="address-info">
+                    <p class="address-title">Địa chỉ nhận hàng</p>
+                    <p class="address-details">
+                        <div class="form-group required">
+                            <label for="name">Tên</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group required">
+                                <label for="city">Tỉnh / Thành phố</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group required">
+                                <label for="phone">Số điện thoại</label>
+                                <input type="text" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group required">
+                                <label for="district">Quận / Huyện</label>
+                                <input type="text" id="district" name="district" required>
+                            </div>
+                            <div class="form-group required">
+                                <label for="ward">Xã / Phường</label>
+                                <input type="text" id="ward" name="ward" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label for="address">Địa chỉ</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                    </p>
+                    <button id="use-saved-address-button">Sử dụng địa chỉ đã lưu</button>
+                    <button id="save-address-button">Lưu địa chỉ mới</button>
+                <select id="saved-addresses">
+                    <!-- Địa chỉ đã lưu sẽ được thêm ở đây từ JavaScript -->
+                </select>
+                </div>
+            </div>
+            <div class="product-section">
+                <h3>Sản phẩm</h3>
+                <div class="product">
+                    <img src="logo.jpg" alt="Xe máy Yamaha NVX 155 VVA THẾ HỆ 2 2021">
+                    <div class="product-details">
+                        <p>Xe máy Yamaha NVX 155 VVA THẾ HỆ 2 2021</p>
+                        <p style="color: #ff4500;">25,500,000đ</p>
+                        <div class="quantily">
+                            <button>−</button>
+                            <input type="number" value="1" min="1">
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+                <p>Tổng cộng tạm tính: <strong>25,500,000đ</strong></p>
+            </div>
+            <div class="payment-section">
+                <h3>Phương thức thanh toán:</h3>
+                <button>Thanh toán khi nhận hàng</button>
+                <button>Thẻ Tín Dụng / Thẻ ATM</button>
+            </div>
+            <div class="summary-section">
+                <div class="item">
+                    <span>Tổng cộng:</span>
+                    <span>25.500.000₫</span>
+                </div>
+                <div class="item">
+                    <span>Phí vận chuyển:</span>
+                    <span>1.000₫</span>
+                </div>
+                <div class="item total">
+                    <span><strong>Tổng thanh toán:</strong></span>
+                    <span class="price">26.501.000₫</span>
+                </div>
+            </div>
+            <div class="order">
+                <button class="back-button">Trở lại TRANH CHỦ</button>
+                <button class="order-button">Đặt Hàng</button>
+            </div>
+        </div>
+    </form>
+    <div id="donhang">
+        <div class="container">
+            <div class="line"></div>
+            <div class="bill">
+                <div class="order-status">
+                    <h3>Đơn đặt hàng</h3>
+                    <div id="status">
+                        <h3>Đang xử lý</h3>
+                    </div>
+                </div>
+                
+                <div class="product-bill">
+                    <img src="logo.jpg" alt="">
+                    <div class="product-info">
+                        <p>Xe máy Yamaha NVX 155 VVA THẾ HỆ 2 2021</p>
+                        <p style="color: #ff4500;">25,500,000đ</p>
+                        <p>Số lượng:<input type="number" min="1" value="1">Chiếc</p>
+                        
+                    </div>
+                </div>
+                <div class="total">
+                    <div class="item">
+                        <span>Số hàng hóa:</span>
+                        <span>1</span>
+                    </div>
+                    <div class="item ">
+                        <span><strong>Thành tiền:</strong></span>
+                        <span class="price">26.501.000₫</span>
+                    </div>
+                </div>
+                <div class="cancel">
+                    <button>Hủy đơn hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="/Trang chu/js/dathang.js"></script> 
+</body>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 157 Nguyễn Gia Trí, phường 25, quận Bình Thạnh</p>
+            <p><i class="fas fa-envelope"></i> Xetoyscompany@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 0966572407</p>
+        </div>
+        <div class="footer-links">
+            <p>&copy; 2024 Online Store. All rights reserved.</p>
+            <nav>
+                <a href="#">Return and Refund Policy</a>
+                <a href="#">Terms & Conditions of Payment</a>
+                <a href="#">Payment Methods</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Delivery Policy</a>
+                <a href="#">Contact Information</a>
+            </nav>
+        </div>
+        <div class="company-info">
+            <img src="thongtin.png" alt="logo">
+        </div>
+    </div>
+    
+</footer>
+ 
+</html>

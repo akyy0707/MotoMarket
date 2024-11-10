@@ -38,21 +38,23 @@ document.querySelector(".login-btn").onclick = function() {
 
     if (user) {
         alert("Đăng nhập thành công!");
+        
+        const currAcc = user;
+        localStorage.setItem('currAcc', JSON.stringify(currAcc));
+        
         document.getElementById("khname").innerHTML = `
             <p onmouseenter="hienthongtinkh()" onmouseout="anthongtinkh()">
-                Tài khoản: ${user.name}
+                Tài khoản: ${currAcc.name}
             </p>
             <div class="noidung hidden" id="noidung">
                 <h3>Thông tin khách hàng</h3>
-                <p>Khách hàng: ${user.name}</p>
-                <p>Điện thoại: ${user.phone}</p>
-                <p>Email: ${user.gmail}</p>
+                <p>Khách hàng: ${currAcc.name}</p>
+                <p>Điện thoại: ${currAcc.phone}</p>
+                <p>Email: ${currAcc.gmail}</p>
             </div>`;
-
         successLogin();
         closeLogin();
         giohang = true;
-        console.log(giohang);
     } else {
         alert("Sai tên đăng nhập hoặc mật khẩu!");
     }

@@ -23,6 +23,12 @@
     width: 95px;
 }
 
+a{
+    /* background-color: black; */
+    color: black;
+    text-decoration: none;
+}
+
 .search{
     height: 30px;
     width: 550px;
