@@ -17,7 +17,7 @@ function advancedSearch(index) {
     switch(index) {
         case 1:
             setItem1();
-            document.getElementById("search-box").value = '';
+            // document.getElementById("search-box").value = '';
             document.getElementById("tatca").classList.add('active');
             break;
         case 2:
@@ -58,6 +58,7 @@ function setItem1(){
         items.push(i);
     });
     filteredItems = [...items];
+    searchItems();
 }
 
 function setItem2(type){
@@ -67,7 +68,7 @@ function setItem2(type){
             const i = `<div class="contentitem" onclick="sanpham('${itemJSON}')">
                           <img src="${item.image}" alt="${item.name}">
                           <p class="tenxe">${item.name}</p>
-                          <p class="giaxe">Giá tiền: ${item.price} VNĐ</p>
+                          <p class="giaxe">Giá tiền: ${item.price.toLocaleString()} VNĐ</p>
                        </div>`;
             items.push(i);
         }
@@ -82,7 +83,7 @@ function setItem3(hang){
             const i = `<div class="contentitem" onclick="sanpham('${itemJSON}')">
                           <img src="${item.image}" alt="${item.name}">
                           <p class="tenxe">${item.name}</p>
-                          <p class="giaxe">Giá tiền: ${item.price} VNĐ</p>
+                          <p class="giaxe">Giá tiền: ${item.price.toLocaleString()} VNĐ</p>
                        </div>`;
             items.push(i);
         }
@@ -125,8 +126,12 @@ function searchItems() {
     const maxPrice = parseFloat(document.getElementById('giamax').value) || Infinity;
 
     filteredItems = items.filter(item => {
-        const priceMatch = item.match(/Giá tiền: (\d+) VNĐ/);
-        const price = priceMatch ? parseFloat(priceMatch[1]) : 0;
+        const priceMatch = item.match(/Giá tiền: (\d[\d,\.]*) VNĐ/);
+        let price = 0;
+        
+        if (priceMatch) {
+            price = parseFloat(priceMatch[1].replace(/[,\.]/g, ''));
+        }
 
         return (
             item.toLowerCase().includes(searchTerm) &&
