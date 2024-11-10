@@ -53,7 +53,7 @@ function setItem1(){
         const i = `<div class="contentitem" onclick="sanpham('${itemJSON}')">
                       <img src="${item.image}" alt="${item.name}">
                       <p class="tenxe">${item.name}</p>
-                      <p class="giaxe">Giá tiền: ${item.price} VNĐ</p>
+                      <p class="giaxe">Giá tiền: ${item.price.toLocaleString()} VNĐ</p>
                    </div>`;
         items.push(i);
     });
