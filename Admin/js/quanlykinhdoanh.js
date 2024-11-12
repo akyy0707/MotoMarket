@@ -7,3 +7,4 @@ function hienkh(){
     document.getElementById("TKKH").classList.remove("hidden");
     document.getElementById("TKXe").classList.add("hidden");
 }
+

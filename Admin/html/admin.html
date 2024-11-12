@@ -82,14 +82,14 @@
         <section class="table-section">
             <button class="add-btn" onclick="hienxe()">Thống kê theo xe</button>
             <button class="add-btn" onclick="hienkh()">Thống kê theo khách hàng</button>
-
-            <span>Khoảng thời gian:</span>
-            <input type="date" id="">
-            <span>-</span>
-            <input type="date" id="">
-
-            
-            <div id="TKXe" class="hidden">
+            <br>
+            <div class="period">
+                <span><h2>Khoảng thời gian:</h2></span>
+                <input type="date" id="">
+                <span>-</span>
+                <input type="date" id="">
+            </div>
+            <div id="TKXe">
                 <h2>Thống kê theo xe:</h2>
                 <table>
                     <thead>
@@ -100,7 +100,7 @@
                         </tr>
                     </thead>
                 </table>
-
+                <br>
                 <h2>Xe bán chạy nhất:</h2>
                 <table>
                     <thead>
@@ -111,7 +111,7 @@
                         </tr>
                     </thead>
                 </table>
-
+                <br>
                 <h2>Xe bán ế nhất:</h2>
                 <table>
                     <thead>
@@ -125,7 +125,7 @@
             </div>
 
 
-            <div id="TKKH">
+            <div id="TKKH" class="hidden">
                 <h2>Thống kê theo khách hàng:</h2>
                 <table>
                     <thead>
@@ -136,7 +136,7 @@
                         </tr>
                     </thead>
                 </table>
-
+                <br>
                 <h2>5 Khách hàng phát sinh nhiều doanh thu nhất trong khoảng thời gian trên:</h2>
                 <table>
                     <thead>
