@@ -29,3 +29,4 @@
 // ];
 
 // localStorage.setItem('acc', JSON.stringify(acc));
+localStorage.setItem('giohang', JSON.stringify([]));

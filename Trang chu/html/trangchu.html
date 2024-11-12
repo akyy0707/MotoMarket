@@ -169,12 +169,6 @@
                     <div class="product-image-container">
                         <img id="mainImage" src="/logo.jpg" alt="Yamaha NVX 155 VVA" class="main-image">
                     </div>
-                    <div class="thumbnail-container">
-                        <img src="/logo.jpg" alt="Màu xám" class="thumbnail" onmouseover="changeImage('gray-bike.jpg')">
-                        <img src="/logo.jpg" alt="Màu đen" class="thumbnail" onmouseover="changeImage('black-bike.jpg')">
-                        <img src="/logo.jpg" alt="Màu xanh" class="thumbnail" onmouseover="changeImage('blue-bike.jpg')">
-                        <img src="/logo.jpg" alt="Màu đỏ" class="thumbnail" onmouseover="changeImage('red-bike.jpg')">
-                    </div>
                 </div>
                 <div class="right">
                     <div class="product-title">Xe Máy Yamaha NVX 155 VVA THẾ HỆ II MÀU MỚI 2024</div>
@@ -188,9 +182,9 @@
                     </div>
                     <div>Số Lượng: </div>
                     <div class="quantily">
-                        <button>−</button>
-                        <input type="number" value="1" min="1">
-                        <button>+</button>
+                        <button onclick="minus()">−</button> 
+                        <input type="number" value= "1" min="1" id="soluong">
+                        <button onclick="plus()">+</button>
                     </div>
                     <div>Đơn Vị: Chiếc</div>
                 </div>
@@ -202,7 +196,7 @@
                     <i class="fa-brands fa-tiktok"></i>
                 </div>
                 <div class="product-actions right">
-                    <button class="add-to-cart">Thêm Vào Giỏ Hàng</button>
+                    <button class="add-to-cart" id="mua">Thêm Vào Giỏ Hàng</button>
                 </div>
             </div>
         </div>
