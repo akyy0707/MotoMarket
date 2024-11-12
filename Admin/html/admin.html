@@ -5,34 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Website Bán Xe</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="/Admin/css/admin.css">
+    <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
 </head>
 
 <body>
-
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo-container">
-            <img src="logo.png" alt="Logo" class="logo">
+            <img src="/image/logo.png" alt="Logo" class="logo">
         </div>
         <div class="menu">
             <h2>Admin</h2>
             <ul>
-                <li><a href="#">Quản Lý Xe</a></li>
-                <li><a href="#">Quản Lý Đơn Hàng</a></li>
-                <li><a href="#">Quản Lý Khách Hàng</a></li>
-                <li><a href="#">Thoát</a></li>
+                <li onclick="qlxe()"><a>Quản Lý Xe</a></li>
+                <li><a>Quản Lý Đơn Hàng</a></li>
+                <li><a>Quản Lý Khách Hàng</a></li>
+                <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
+                <!-- <li><a href="#">Thoát</a></li> -->
             </ul>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
+    <!-- Quan ly xe -->
+    <div class="main-content" id="qlxe">
         <div class="main-header">
             <h1>Quản Lý Xe</h1>
         </div>
 
-        <!-- Bảng danh sách xe -->
         <section class="table-section">
             <button class="add-btn" onclick="showAddForm()">Thêm Xe Mới</button>
             <h2>Danh Sách Xe</h2>
@@ -48,12 +47,10 @@
                     </tr>
                 </thead>
                 <tbody id="car-list">
-                    <!-- Danh sách xe sẽ hiển thị ở đây -->
                 </tbody>
             </table>
         </section>
 
-        <!-- Form thêm xe mới -->
         <div class="form-popup" id="add-form">
             <form id="add-car-form" class="popup-form">
                 <h2>Thêm Xe Mới</h2>
@@ -74,82 +71,89 @@
                 <button id="close-add-form" type="button" onclick="closeAddForm()">Hủy</button>
             </form>
         </div>
-
     </div>
-    <script>
-        const carList = document.getElementById('car-list');
-        const addForm = document.getElementById('add-form');
-        const addCarForm = document.getElementById('add-car-form');
 
-        let cars = [];
+    <!-- Quan ly kinh doanh -->
+    <div class="main-content hidden" id="qlkd">
+        <div class="main-header">
+            <h1>Quản Lý Kinh Doanh</h1>
+        </div>
 
-        function renderCarList() {
-            carList.innerHTML = '';
-            cars.forEach((car, index) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                <td><img src="${car.image}" alt="${car.name}" style="width: 50px; height: 50px;"></td>
-                <td>${car.name}</td>
-                <td>${car.type}</td>
-                <td>${car.price.toLocaleString()} VND</td>
-                <td>
-                    <button id="delete-btn" onclick="deleteCar(${index})">Xóa</button>
-                    <button id="edit-btn" onclick="editCar(${index})">Sửa</button>
-                </td>
-            `;
-                carList.appendChild(tr);
-            });
-        }
+        <section class="table-section">
+            <button class="add-btn" onclick="hienxe()">Thống kê theo xe</button>
+            <button class="add-btn" onclick="hienkh()">Thống kê theo khách hàng</button>
 
-        function showAddForm() {
-            addForm.style.display = 'flex';
-        }
+            <span>Khoảng thời gian:</span>
+            <input type="date" id="">
+            <span>-</span>
+            <input type="date" id="">
 
-        function closeAddForm() {
-            addForm.style.display = 'none';
-        }
-        const fileInput = document.getElementById("car-image");
-        const fileName = document.getElementById("fileName")
-        fileInput.addEventListener("change", function () {
-            if (fileInput.files.length > 0) {
-                fileName.textContent = fileInput.files[0].name;
-            } else {
-                fileName.textContent = "No file chosen";
-            }
-        });
-        function addCar(event) {
-            event.preventDefault();
-            const name = document.getElementById('car-name').value;
-            const type = document.getElementById('car-type').value;
-            const price = parseFloat(document.getElementById('car-price').value);
-            const image = URL.createObjectURL(document.getElementById('car-image').files[0]);
+            
+            <div id="TKXe" class="hidden">
+                <h2>Thống kê theo xe:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên Xe</th>
+                            <th>Số lượng bán ra</th>
+                            <th>Tổng tiền thu được</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <h2>Xe bán chạy nhất:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên Xe</th>
+                            <th>Số lượng bán ra</th>
+                            <th>Tổng tiền thu được</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <h2>Xe bán ế nhất:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên Xe</th>
+                            <th>Số lượng bán ra</th>
+                            <th>Tổng tiền thu được</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
 
 
-            const newCar = {
-                name,
-                type,
-                price,
-                image
-            };
+            <div id="TKKH">
+                <h2>Thống kê theo khách hàng:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên khách hàng</th>
+                            <th>Doanh thu</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                </table>
 
-            cars.push(newCar);
-            renderCarList();
-            closeAddForm();
-        }
+                <h2>5 Khách hàng phát sinh nhiều doanh thu nhất trong khoảng thời gian trên:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên khách hàng</th>
+                            <th>Doanh thu</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </section>
+    </div>
 
-        function deleteCar(index) {
-            cars.splice(index, 1);
-            renderCarList();
-        }
 
-        function editCar(index) {
-            alert('Chức năng sửa chưa được thực hiện!');
-        }
-
-        addCarForm.addEventListener('submit', addCar);
-        renderCarList();
-
-    </script>
+    <script src="/Admin/js/quanlyxe.js"></script>
+    <script src="/Admin/js/quanlykinhdoanh.js"></script>
+    <script src="/Admin/js/quanly.js"></script>
 </body>
-
 </html>

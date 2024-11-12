@@ -104,7 +104,7 @@ function showTrang(){
     let sotrang = '';
 
     for (let i = 1; i <= tongsotrang; i++) {
-        sotrang += `<button class="${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+        sotrang += `<button class="${i === currentPage ? 'active' : ''}" onclick="doiTrang(${i})">${i}</button>`;
     }
 
     document.getElementById("sotrang").innerHTML = sotrang;
