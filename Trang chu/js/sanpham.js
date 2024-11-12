@@ -43,7 +43,12 @@ function sanpham(sp) {
     });
 
     document.querySelector("#mua").addEventListener("click", function(){
-        themvaogiohang(item);
+        if(giohang){
+            themvaogiohang(item);
+        }
+        else{
+            alert("Phải đăng nhập để mua hàng!!!");
+        }
     })
     
 
@@ -81,4 +86,7 @@ function themvaogiohang(sanpham) {
     localStorage.setItem("giohang", JSON.stringify(gh));
 
     alert("Sản phẩm đã được thêm vào giỏ hàng.");
+
+    document.getElementById("sanphamoverlay").classList.add("hidden");
+    document.getElementById("soluong").value = 1;
 }
