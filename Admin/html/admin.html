@@ -7,6 +7,7 @@
     <title>Admin - Website Bán Xe</title>
     <link rel="stylesheet" href="/Admin/css/admin.css">
     <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
+    <link rel="stylesheet" href="/Admin/css/quanlydonhang.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
             <h2>Admin</h2>
             <ul>
                 <li onclick="qlxe()"><a>Quản Lý Xe</a></li>
-                <li><a>Quản Lý Đơn Hàng</a></li>
+                <li onclick="qldh()"><a>Quản Lý Đơn Hàng</a></li>
                 <li><a>Quản Lý Khách Hàng</a></li>
                 <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
                 <!-- <li><a href="#">Thoát</a></li> -->
@@ -71,6 +72,63 @@
                 <button id="close-add-form" type="button" onclick="closeAddForm()">Hủy</button>
             </form>
         </div>
+    </div>
+
+    <!-- Quan ly don hang -->
+    <div class="main-content hidden" id="qldh">
+        <div class="main-header">
+            <h1>Quản Lý Đơn Hàng</h1>
+        </div>
+
+        <section class="table-section">
+            <button class="add-btn" onclick="">Sắp xếp theo khoảng thời gian</button>
+            <button class="add-btn" onclick="">Lọc theo tình trạng đơn hàng</button>
+            <br>
+
+            <div id="TKTGian">
+                <div class="period">
+                    <span>
+                        <h2>Khoảng thời gian:</h2>
+                    </span>
+                    <input type="date" id="">
+                    <span>-</span>
+                    <input type="date" id="">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Địa chỉ </th>
+                            <th>Thời gian đặt hàng</th>
+                            <th>Tổng tiền thu được</th>
+                            <th>Tình trạng đơn hàng</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="TTTDHang" class="hidden">
+
+                <div class="order-status">
+                    <select name="orderStatus" id="orderStatus" disabled>
+                        <option value="unprocessed">Chưa xử lý</option>
+                        <option value="confirmed">Đã xác nhận</option>
+                        <option value="shipped">Đã Giao</option>
+                        <option value="cancelled">Đã hủy</option>
+                    </select>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Địa chỉ </th>
+                            <th>Thời gian đặt hàng</th>
+                            <th>Tổng tiền thu được</th>
+                            <th>Tình trạng đơn hàng</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </section>
     </div>
 
     <!-- Quan ly kinh doanh -->

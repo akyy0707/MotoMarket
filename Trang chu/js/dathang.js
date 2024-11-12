@@ -92,6 +92,10 @@ function hienthongtinkh() {
     document.getElementById("noidung").classList.remove("hidden");
 }
 
+function anthongtinkh() {
+    document.getElementById("noidung").classList.add("hidden");
+}
+
 function xoaCA(){
     const cA = {};
     localStorage.setItem('currAcc', JSON.stringify(cA));
