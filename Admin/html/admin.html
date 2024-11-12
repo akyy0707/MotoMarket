@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
 </head>
 
-<body>
+<body onload="renderListProducts()">
     <div class="sidebar">
         <div class="logo-container">
             <img src="/image/logo.png" alt="Logo" class="logo">
@@ -39,14 +39,17 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Hình Ảnh</th>
-                        <th>Tên Xe</th>
-                        <th>Loại Xe</th>
+                        <th>#</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên </th>
+                        <th>Hãng</th>
+                        <th>Loại</th>
+                        <th>Miêu tả</th>
                         <th>Giá</th>
-                        <th>Thao Tác</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
-                <tbody id="car-list">
+                <tbody id="products-list">
                 </tbody>
             </table>
         </section>
@@ -54,24 +57,44 @@
         <div class="form-popup" id="add-form">
             <form id="add-car-form" class="popup-form">
                 <h2>Thêm Xe Mới</h2>
-                <label for="car-name">Tên Xe:</label>
-                <input type="text" id="car-name" required>
+                <label>Tên xe</label>
+                <input type="text" name="Name" id="Name">
+                <span id="nameError" class="error"></span>
+                <br>
 
-                <label for="car-type">Loại Xe:</label>
-                <input type="text" id="car-type" required>
+                <label>Hãng</label>
+                <select id="Hang" name="Hang">
+                    <option value="Yamha" > Yamaha </option>
+                    <option value="Honda"> Honda </option>
+                </select> <br>
+    
+                <label>Loại xe</label>
+                <select id="Loaixe" name="Loaixe">
+                    <option value="Tay ga" > Xe tay ga </option>
+                    <option value="Xe số"> Xe số </option>
+                </select> 
+                <br>
+    
+                <label>Miêu tả</label>
+                <input type="text" name="Mieuta" id="Mieuta">
+                <span id="mieutaError" class="error"></span>
+                <br>
+    
+                <label>Giá</label>
+                <input type="text" name="Gia" id="Gia">
+                <span id="giaError" class="error"></span>
+                <input type="hidden" id="productId">
+                <br>
 
-                <label for="car-price">Giá Xe:</label>
-                <input type="number" id="car-price" required>
+                <label class="file-label">Ảnh    
+                <input type="file" name="upload" id="upload" onchange="ImagesFileAsURL()" multiple />
+            </label>
+            <div id="displayImg"></div>
 
-                <label class="file-label" for="car-image">Ảnh Xe:</label>
-                <input type="file" id="car-image">
-                <span class="file-name" id="fileName">No file chosen</span>
-
-                <button id="add-car-btn" type="submit">Thêm Xe</button>
+                <button id="add-car-btn" type="submit" onclick="addProducts()">Thêm Xe</button>
                 <button id="close-add-form" type="button" onclick="closeAddForm()">Hủy</button>
             </form>
         </div>
-    </div>
 
     <!-- Quan ly kinh doanh -->
     <div class="main-content hidden" id="qlkd">
@@ -155,5 +178,7 @@
     <script src="/Admin/js/quanlyxe.js"></script>
     <script src="/Admin/js/quanlykinhdoanh.js"></script>
     <script src="/Admin/js/quanly.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
 </body>
 </html>
