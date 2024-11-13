@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đặt Hàng</title>
     <link rel="stylesheet" href="/Trang chu/css/dathang.css">
-    <link href="/fontawesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Trang chu/fontawesome/css/all.min.css">
 </head>
 
 
@@ -76,44 +76,33 @@
                     <button id="use-saved-address-button">Sử dụng địa chỉ đã lưu</button>
                     <button id="save-address-button">Lưu địa chỉ mới</button>
                 <select id="saved-addresses">
-                    <!-- Địa chỉ đã lưu sẽ được thêm ở đây từ JavaScript -->
                 </select>
                 </div>
             </div>
-            <div class="product-section">
+            <div class="product-section" id="sanphamtronggiohang">
                 <h3>Sản phẩm</h3>
-                <div class="product">
-                    <img src="logo.jpg" alt="Xe máy Yamaha NVX 155 VVA THẾ HỆ 2 2021">
-                    <div class="product-details">
-                        <p>Xe máy Yamaha NVX 155 VVA THẾ HỆ 2 2021</p>
-                        <p style="color: #ff4500;">25,500,000đ</p>
-                        <div class="quantily">
-                            <button>−</button>
-                            <input type="number" value="1" min="1">
-                            <button>+</button>
-                        </div>
-                    </div>
-                </div>
-                <p>Tổng cộng tạm tính: <strong>25,500,000đ</strong></p>
+                <div id="lsp"></div>
+
             </div>
+            
             <div class="payment-section">
                 <h3>Phương thức thanh toán:</h3>
-                <button>Thanh toán khi nhận hàng</button>
-                <button>Thẻ Tín Dụng / Thẻ ATM</button>
+                <select id="phuongthucthanhtoan">
+                    <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                    <option value="thetinhdung">Thẻ tín dụng / Thẻ ATM</option>
+                </select>
             </div>
-            <div class="summary-section">
-                <div class="item">
-                    <span>Tổng cộng:</span>
-                    <span>25.500.000₫</span>
-                </div>
+            
+            <div class="summary-section">   
                 <div class="item">
                     <span>Phí vận chuyển:</span>
-                    <span>1.000₫</span>
+                    <span>Miễn Phí</span>
                 </div>
-                <div class="item total">
-                    <span><strong>Tổng thanh toán:</strong></span>
-                    <span class="price">26.501.000₫</span>
+                <div class="total-payment">
+                    <p><strong>Tổng thanh toán:</strong> <span id="tongthanhtoan"></span></p>
                 </div>
+            </div>
+            
             </div>
             <div class="order">
                 <button class="back-button">Trở lại TRANH CHỦ</button>
@@ -129,16 +118,6 @@
                     <h3>Đơn đặt hàng</h3>
                     <div id="status">
                         <h3>Đang xử lý</h3>
-                    </div>
-                </div>
-                
-                <div class="product-bill">
-                    <img src="logo.jpg" alt="">
-                    <div class="product-info">
-                        <p>Xe máy Yamaha NVX 155 VVA THẾ HỆ 2 2021</p>
-                        <p style="color: #ff4500;">25,500,000đ</p>
-                        <p>Số lượng:<input type="number" min="1" value="1">Chiếc</p>
-                        
                     </div>
                 </div>
                 <div class="total">
@@ -157,31 +136,32 @@
             </div>
         </div>
     </div>
-<script src="/Trang chu/js/dathang.js"></script> 
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 157 Nguyễn Gia Trí, phường 25, quận Bình Thạnh</p>
+                <p><i class="fas fa-envelope"></i> Xetoyscompany@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 0966572407</p>
+            </div>
+            <div class="footer-links">
+                <p>&copy; 2024 Online Store. All rights reserved.</p>
+                <nav>
+                    <a href="#">Return and Refund Policy</a>
+                    <a href="#">Terms & Conditions of Payment</a>
+                    <a href="#">Payment Methods</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Delivery Policy</a>
+                    <a href="#">Contact Information</a>
+                </nav>
+            </div>
+            <div class="company-info">
+                <img src="/image/thongtin.png" alt="logo">
+            </div>
+        </div>
+        
+    </footer>
+    <script src="/Trang chu/js/dathang.js"></script> 
+    <script src="/Trang chu/js/giohang.js"></script>
 </body>
-<footer class="footer">
-    <div class="footer-content">
-        <div class="contact-info">
-            <p><i class="fas fa-map-marker-alt"></i> 157 Nguyễn Gia Trí, phường 25, quận Bình Thạnh</p>
-            <p><i class="fas fa-envelope"></i> Xetoyscompany@gmail.com</p>
-            <p><i class="fas fa-phone"></i> 0966572407</p>
-        </div>
-        <div class="footer-links">
-            <p>&copy; 2024 Online Store. All rights reserved.</p>
-            <nav>
-                <a href="#">Return and Refund Policy</a>
-                <a href="#">Terms & Conditions of Payment</a>
-                <a href="#">Payment Methods</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Delivery Policy</a>
-                <a href="#">Contact Information</a>
-            </nav>
-        </div>
-        <div class="company-info">
-            <img src="thongtin.png" alt="logo">
-        </div>
-    </div>
-    
-</footer>
  
 </html>

@@ -1,42 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const link = document.querySelector('.shop a');
-    
-    link.addEventListener('click', function(event) {        
-        if (!giohang) {
-            event.preventDefault();
-            alert("Vui lòng đăng nhập để mua hàng!!!");
-        }
-    });
+    hienthigiohang();
 });
 
-// function hienthigiohang() {
-//     const giohang = JSON.parse(localStorage.getItem("giohang")) || [];
-//     const khungsanpham = document.querySelector(".product-section");
+function hienthigiohang() {
+    const giohang = JSON.parse(localStorage.getItem("giohang")) || [];
+    let tongtien = 0;
+    let lsp = '';
 
-//     khungsanpham.innerHTML = "<h3>Sản phẩm trong giỏ hàng</h3>";
+    giohang.forEach(sanpham => {
+        const thanhtien = sanpham.price * sanpham.sl;
+        tongtien += thanhtien;
 
-//     if(giohang.length === 0){
-//         khungsanpham.innerHTML = "<p>Sản phẩm trống.</p>"
-//         return;
-//     }
-//     gioHang.forEach(sanPham => {
-//         const sanPhamHTML = `
-//             <div class="product">
-//                 <img src="${sanPham.image}" alt="${sanPham.name}">
-//                 <div class="product-details">
-//                     <p>${sanPham.name}</p>
-//                     <p style="color: #ff4500;">${sanPham.price.toLocaleString()} VNĐ</p>
-//                     <div class="quantity">
-//                         <span>So luong: ${sanPham.soLuong}</span>
-//                     </div>
-//                 </div>
-//             </div>
-//         `;
-//         khungSanPham.innerHTML += sanPhamHTML;
-//     });
+        lsp += `
+            <div class="cart-item">
+                <img src="${sanpham.image}" alt="${sanpham.name}">
+                <div class="cart-item-info">
+                    <p>${sanpham.name}</p>
+                    <p>Giá: ${sanpham.price.toLocaleString()} VNĐ</p>
+                    <p>Số lượng: ${sanpham.sl}</p> 
+                    <p>Thành tiền: ${thanhtien.toLocaleString()} VNĐ</p>
+                </div>
+            </div>
+        `;
+    });
 
-//     const tongCong = gioHang.reduce((sum, sanPham) => sum + sanPham.price * sanPham.soLuong, 0);
-//     khungSanPham.innerHTML += `<p>Tong cong tam tinh: <strong>${tongCong.toLocaleString()} VNĐ</strong></p>`;
-// }
+    document.getElementById("lsp").innerHTML = lsp;
 
-// document.addEventListener("DOMContentLoaded", hienthigiohang());
+    tinhtongthanhtoan(tongtien);
+}
+
+function tinhtongthanhtoan(tongtien = null) {
+    const phuongthucthanhtoan = document.getElementById("phuongthucthanhtoan").value;
+    let phivanchuyen = 0;
+
+    if (tongtien === null) {
+        tongtien = JSON.parse(localStorage.getItem("giohang")).reduce((total, sanpham) => {
+            return total + (sanpham.price * sanpham.sl);
+        }, 0);
+    }
+
+    document.getElementById("tongthanhtoan").innerText = `${tongtien.toLocaleString()} VNĐ`;
+}

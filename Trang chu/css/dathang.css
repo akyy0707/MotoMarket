@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+.hidden{
+    display: none;
+}
 #dathang {
     display: flex;
     justify-content: center;
