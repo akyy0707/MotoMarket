@@ -1,7 +1,5 @@
-
-
 const addForm = document.getElementById('add-form');
-
+const changeForm = document.getElementById('change-form');
 
 function showAddForm() {
     addForm.style.display = 'flex';
@@ -11,75 +9,69 @@ function closeAddForm() {
     addForm.style.display = 'none';
 }
 
+function showChangeForm() {
+    changeForm.style.display = 'flex';
+}
+
+function closeChangeForm() {
+    changeForm.style.display = 'none';
+}
+
 function addProducts() {
-    event.preventDefault();
-    let tenxe = document.getElementById('Name').value;
-    const hang = document.getElementById('Hang').value;
-    const loaixe = document.getElementById('Loaixe').value;
-    let mieuta = document.getElementById('Mieuta').value;
-    let gia = document.getElementById('Gia').value;
-    let productId = document.getElementById('productId').value;
+    const name = document.getElementById('Name').value;
+    const brand = document.getElementById('Hang').value;
+    const type = document.getElementById('Loaixe').value;
+    const description = document.getElementById('Mieuta').value;
+    const price = parseFloat(document.getElementById('Gia').value.replace(/,/g, ''));
+    const imageInput = document.getElementById('upload');
+    const file = imageInput.files[0];
 
-    // Validate fields
-    if (_.isEmpty(tenxe)) {
-        document.getElementById('nameError').innerHTML = 'Vui lòng nhập tên xe';
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const imageSrc = event.target.result;
+            const newProduct = {
+                image: imageSrc,
+                name: name,
+                brand: brand,
+                type: type,
+                description: description,
+                price: price
+            };
+
+            let products = JSON.parse(localStorage.getItem('xeArr')) || [];
+            products.push(newProduct);
+            localStorage.setItem('xeArr', JSON.stringify(products));
+
+            alert('Thêm xe thành công!');
+            renderListProducts();
+            closeAddForm();
+        };
+        reader.readAsDataURL(file);
     } else {
-        document.getElementById('nameError').innerHTML = '';
+        alert('Vui lòng chọn hình ảnh!');
     }
-
-    if (_.isEmpty(mieuta)) {
-        document.getElementById('mieutaError').innerHTML = 'Vui lòng nhập miêu tả';
-    } else {
-        document.getElementById('mieutaError').innerHTML = '';
-    }
-
-    if (isNaN(gia) || gia.trim().length < 7) {
-        document.getElementById('giaError').innerHTML = 'Vui lòng nhập đúng giá xe';
-    } else {
-        document.getElementById('giaError').innerHTML = '';
-    }
-
-    if (tenxe && hang && loaixe && mieuta && gia) {
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-        let imagesData = JSON.parse(localStorage.getItem('productImages')) || [];
-        
-        if (productId) {
-            products[productId] = { tenxe, hang, loaixe, mieuta, gia, images: imagesData };
-        } else {
-            products.push({ tenxe, hang, loaixe, mieuta, gia, images: imagesData });
-        }
-
-        localStorage.setItem('products', JSON.stringify(products));
-        localStorage.removeItem('productImages'); // Clear images after adding
-        renderListProducts();
-        document.getElementById('productId').value = '';
-        closeAddForm();}
-
 }
 
 function renderListProducts() {
-    let products = JSON.parse(localStorage.getItem('products')) || [];
-    let tableContent = `
-        
-    `;
+    let products = JSON.parse(localStorage.getItem('xeArr')) || [];
+    let tableContent = ``;
 
     products.forEach((product, index) => {
         tableContent += `
             <tr>
                 <td>${index + 1}</td>
-                <td>${product.images.map(img => `<img src="${img}" width="50" height="50"/>`).join(' ')}</td>
-                <td>${product.tenxe}</td>
-                <td>${product.hang}</td>
-                <td>${product.loaixe}</td>
-                <td>${product.mieuta}</td>
-                <td>${parseFloat(product.gia).toLocaleString()} VNĐ</td>
-
-                
+                <td><img src="${product.image}" width="50" height="50"/></td>
+                <td>${product.name}</td>
+                <td>${product.brand}</td>
+                <td>${product.type}</td>
+                <td>${product.description}</td>
+                <td>${product.price.toLocaleString()} VNĐ</td>
                 <td>
-                 <button id="delete-btn" onclick="deleteproducts(${index})">Xóa</button>
-                <button id="edit-btn" onclick="editproducts(${index})">Sửa</button>
+                    <button id="delete-btn" onclick="deleteproducts(${index})">Xóa</button>
+                    <button id="edit-btn" onclick="editproducts(${index})">Sửa</button>
                 </td>
-                </tr>
+            </tr>
         `;
     });
 
@@ -87,76 +79,60 @@ function renderListProducts() {
 }
 
 function deleteproducts(id) {
-    if(confirm("Bạn có muốn xóa sản phẩm?")){
-    let products = JSON.parse(localStorage.getItem('products')) || [];
-    products.splice(id, 1);
-    localStorage.setItem('products', JSON.stringify(products));
-    renderListProducts();
+    if (confirm("Bạn có muốn xóa sản phẩm?")) {
+        let products = JSON.parse(localStorage.getItem('xeArr')) || [];
+        products.splice(id, 1);
+        localStorage.setItem('xeArr', JSON.stringify(products));
+        renderListProducts();
     }
 }
 
 function editproducts(id) {
-    let products = JSON.parse(localStorage.getItem('products')) || [];
-    showAddForm();
-    document.getElementById("Name").value = products[id].tenxe;
-    document.getElementById("Hang").value = products[id].hang;
-    document.getElementById("Loaixe").value = products[id].loaixe; // Corrected line
-    document.getElementById("Mieuta").value = products[id].mieuta;
-    document.getElementById("Gia").value = products[id].gia;
-    document.getElementById("productId").value = id;
-    document.getElementById("displayImg").innerHTML = products[id].images
-    .map((img, index) => `
-        <div style="display:inline-block; position:relative;">
-            <img src="${img}" width="50" height="50" />
-            <button onclick="removeImage(${id}, ${index})" 
-                style="padding: 0px;position:absolute; top:-15px; right:2px;  color:black; border:none; cursor:pointer;width:10px;height:10px;font-size:10px">
-                X
-            </button>
-        </div>
-    `)
-    .join(' ');
-    
+    let products = JSON.parse(localStorage.getItem('xeArr')) || [];
+    showChangeForm();
+
+    document.getElementById("NameC").value = products[id].name;
+    document.getElementById("HangC").value = products[id].brand;
+    document.getElementById("LoaixeC").value = products[id].type;
+    document.getElementById("MieutaC").value = products[id].description;
+    document.getElementById("GiaC").value = products[id].price;
+    document.getElementById("currentImage").src = products[id].image;
+
+    document.getElementById("update-car-btn").onclick = function () {
+        updateProduct(id);
+    };
 }
 
-function removeImage(productId, imgIndex) {
-    let products = JSON.parse(localStorage.getItem('products')) || [];
-    products[productId].images.splice(imgIndex, 1); // Xóa ảnh khỏi mảng
-    localStorage.setItem('products', JSON.stringify(products)); // Cập nhật lại localStorage
-    editproducts(productId); // Cập nhật lại giao diện
-}
+function updateProduct(id) {
+    const name = document.getElementById('NameC').value;
+    const brand = document.getElementById('HangC').value;
+    const type = document.getElementById('LoaixeC').value;
+    const description = document.getElementById('MieutaC').value;
+    const price = parseFloat(document.getElementById('GiaC').value.replace(/,/g, ''));
+    const imageInput = document.getElementById('uploadC');
+    let products = JSON.parse(localStorage.getItem('xeArr')) || [];
 
-function ImagesFileAsURL() {
-    var fileSelected = document.getElementById('upload').files;
-    var imagesData = []; // Clear previous images
-    document.getElementById('displayImg').innerHTML = ''; // Clear displayed images
-
-    if (fileSelected.length > 0) {
-        for (var i = 0; i < fileSelected.length; i++) {
-            compressAndStoreImage(fileSelected[i]);
-        }
+    if (imageInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            products[id].image = event.target.result;
+            saveUpdatedProduct(id, products, name, brand, type, description, price);
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+    } else {
+        saveUpdatedProduct(id, products, name, brand, type, description, price);
     }
 }
 
-function compressAndStoreImage(file) {
-    new Compressor(file, {
-        quality: 0.2,
-        success(result) {
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                let compressedImageBase64 = e.target.result;
-                let imagesData = JSON.parse(localStorage.getItem('productImages')) || [];
-                imagesData.push(compressedImageBase64);
-                localStorage.setItem('productImages', JSON.stringify(imagesData));
+function saveUpdatedProduct(id, products, name, brand, type, description, price) {
+    products[id].name = name;
+    products[id].brand = brand;
+    products[id].type = type;
+    products[id].description = description;
+    products[id].price = price;
 
-                var newImage = document.createElement('img');
-                newImage.src = compressedImageBase64;
-                document.getElementById('displayImg').appendChild(newImage);
-            };
-            reader.readAsDataURL(result);
-        },
-        error(err) {
-            console.log(err.message);
-        }
-    });
+    localStorage.setItem('xeArr', JSON.stringify(products));
+    alert('Cập nhật xe thành công!');
+    renderListProducts();
+    closeChangeForm();
 }
-

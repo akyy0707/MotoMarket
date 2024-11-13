@@ -151,6 +151,14 @@ input::-webkit-outer-spin-button {
 #close-add-form {
     background-color: red;
 }
+
+#update-car-btn {
+    background-color: #007bff;
+}
+#close-change-form {
+    background-color: red;
+}
+
 .form-popup {
     display: none;
     position: fixed;

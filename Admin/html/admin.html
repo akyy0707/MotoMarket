@@ -22,7 +22,7 @@
                 <li onclick="qldh()"><a>Quản Lý Đơn Hàng</a></li>
                 <li><a>Quản Lý Khách Hàng</a></li>
                 <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
-                <!-- <li><a href="#">Thoát</a></li> -->
+                <li><a href="/Trang chu/html/trangchu.html">Thoát</a></li>
             </ul>
         </div>
     </div>
@@ -60,42 +60,80 @@
                 <h2>Thêm Xe Mới</h2>
                 <label>Tên xe</label>
                 <input type="text" name="Name" id="Name">
-                <span id="nameError" class="error"></span>
                 <br>
 
                 <label>Hãng</label>
                 <select id="Hang" name="Hang">
-                    <option value="Yamha" > Yamaha </option>
-                    <option value="Honda"> Honda </option>
+                    <option value="YAMAHA" > Yamaha </option>
+                    <option value="HONDA"> Honda </option>
                 </select> <br>
     
                 <label>Loại xe</label>
                 <select id="Loaixe" name="Loaixe">
-                    <option value="Tay ga" > Xe tay ga </option>
-                    <option value="Xe số"> Xe số </option>
+                    <option value="tay ga" > Xe tay ga </option>
+                    <option value="xe so"> Xe số </option>
                 </select> 
                 <br>
     
                 <label>Miêu tả</label>
                 <input type="text" name="Mieuta" id="Mieuta">
-                <span id="mieutaError" class="error"></span>
                 <br>
     
                 <label>Giá</label>
                 <input type="text" name="Gia" id="Gia">
-                <span id="giaError" class="error"></span>
-                <input type="hidden" id="productId">
                 <br>
 
                 <label class="file-label">Ảnh    
-                <input type="file" name="upload" id="upload" onchange="ImagesFileAsURL()" multiple />
-            </label>
-            <div id="displayImg"></div>
+                    <input type="file" name="upload" id="upload"/>
+                </label>
+                <div id="displayImg">
+                </div>
 
                 <button id="add-car-btn" type="submit" onclick="addProducts()">Thêm Xe</button>
                 <button id="close-add-form" type="button" onclick="closeAddForm()">Hủy</button>
             </form>
         </div>
+
+        <div class="form-popup hidden" id="change-form">
+            <form id="add-car-form" class="popup-form">
+                <h2>Sửa xe</h2>
+                <label>Tên xe</label>
+                <input type="text" name="Name" id="NameC">
+                <br>
+
+                <label>Hãng</label>
+                <select id="HangC" name="Hang">
+                    <option value="YAMAHA" > Yamaha </option>
+                    <option value="HONDA"> Honda </option>
+                </select> <br>
+    
+                <label>Loại xe</label>
+                <select id="LoaixeC" name="Loaixe">
+                    <option value="tay ga" > Xe tay ga </option>
+                    <option value="xe so"> Xe số </option>
+                </select> 
+                <br>
+    
+                <label>Miêu tả</label>
+                <input type="text" name="Mieuta" id="MieutaC">
+                <br>
+    
+                <label>Giá</label>
+                <input type="text" name="Gia" id="GiaC">
+                <br>
+
+                <label class="file-label">Ảnh    
+                    <input type="file" name="upload" id="uploadC"/>
+                </label>
+                <div id="displayImg">
+                    <img id="currentImage" src="" alt="Current Image" width="50px" height="50px">
+                </div>
+                
+                <button id="update-car-btn" type="button">Sửa Xe</button>
+                <button id="close-change-form" type="button" onclick="closeChangeForm()">Hủy</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Quan ly don hang -->
     <div class="main-content hidden" id="qldh">
@@ -236,7 +274,5 @@
     <script src="/Admin/js/quanlyxe.js"></script>
     <script src="/Admin/js/quanlykinhdoanh.js"></script>
     <script src="/Admin/js/quanly.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
 </body>
 </html>
