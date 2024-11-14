@@ -1,8 +1,10 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
     hienthigiohang();
 });
+
+// document.getElementById("shopping").onclick = function(){
+//     hienthigiohang();
+// }
 
 function hienthigiohang() {
     const giohang = JSON.parse(localStorage.getItem("giohang")) || [];
@@ -14,7 +16,7 @@ function hienthigiohang() {
         tongtien += thanhtien;
 
         lsp += `
-            <div class="cart-item">
+            <div class="cart-item product">
                 <img src="${sanpham.image}" alt="${sanpham.name}">
                 <div class="cart-item-info">
                     <p>${sanpham.name}</p>

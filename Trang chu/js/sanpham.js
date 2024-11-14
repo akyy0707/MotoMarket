@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const link = document.querySelector('.shop a');
+
+    link.addEventListener('click', function(event) {        
+        const giohang = JSON.parse(localStorage.getItem("giohang")) || [];
+        if (giohang.length === 0) {
+            event.preventDefault();
+            alert("Vui lòng đăng nhập để mua hàng!!!");
+        }
+    });
+});
 function sanpham(sp) {
     const item = JSON.parse(decodeURIComponent(sp));
 
