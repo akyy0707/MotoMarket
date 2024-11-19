@@ -145,14 +145,14 @@ input::-webkit-outer-spin-button {
     cursor: pointer;
     font-size: 16px;
 }
-#add-car-btn {
+#add-car-btn,#add-user-btn {
     background-color: #007bff;
 }
 #close-add-form {
     background-color: red;
 }
 
-#update-car-btn {
+#update-car-btn,#update-user-btn {
     background-color: #007bff;
 }
 #close-change-form {
@@ -234,7 +234,7 @@ input[type="file"] {
     display: none;
 }
   
-    div.form-Products,div.list-Products{
+    div.form-Products,div.list-Products,div.form-Users,div.list-Users{
     width:1200px;
     
     padding: 10px;
@@ -243,17 +243,17 @@ input[type="file"] {
     
     }
     
-    div.form-Products h2{
+    div.form-Products,div.form-Users h2{
     padding: 0px;
     margin-top: 0px;
     }
     
-    div.form-Products label{
+    div.form-Products,div.form-Users label{
         float:left;
         width: 150px;
     }
     
-    div.form-Products input[type="text"]{
+    div.form-Products,div.form-Users input[type="text"]{
         width: 200px;
         margin-bottom: 10px;
         padding: 5px;
@@ -268,10 +268,26 @@ input[type="file"] {
     #displayImg {
         margin-top: 30px;
         
+        
     }
     
     #displayImg img {
         height: 50px;
         margin-right: 15px;
         display: inline-block;
+        
+    }
+
+    #deleteImageBtn{
+        position: absolute;
+        top: -25px;
+        right: 10px;
+        color: black;
+        background-color: transparent;
+        border-radius: 50%;
+        text-align: center;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        font-size: 12px
     }
