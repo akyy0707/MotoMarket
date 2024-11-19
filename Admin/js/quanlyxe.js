@@ -76,6 +76,7 @@ function renderListProducts() {
     });
 
     document.getElementById('products-list').innerHTML = tableContent;
+    renderKDList();
 }
 
 function deleteproducts(id) {
