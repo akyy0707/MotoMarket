@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     hienthigiohang();
 });
 
+// document.getElementById("shopping").onclick = function(){
+//     hienthigiohang();
+// }
+
 function hienthigiohang() {
     const giohang = JSON.parse(localStorage.getItem("giohang")) || [];
     let tongtien = 0;
