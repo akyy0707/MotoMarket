@@ -1,4 +1,4 @@
-v// const xeArr = [
+// const xeArr = [
 //     {
 //       image: '/image/YAMAHA/YAMAHA NVX/NVXden.png',
 //       name: 'YAMAHA NVX Đen',
