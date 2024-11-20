@@ -163,3 +163,7 @@ function xemtatcahoadon() {
 function dongdanhsachhoadon() {
     document.getElementById("donhang").classList.add("hidden");
 }
+
+function goToHomePage() {
+    window.location.href = "/Trang chu/html/trangchu.html";
+}
