@@ -147,3 +147,16 @@ th {
     display: none;
     -webkit-appearance: none;
 }
+.view {
+    padding: 15px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #007bff;   
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.view:hover {
+    background-color: #4A90E2;
+}

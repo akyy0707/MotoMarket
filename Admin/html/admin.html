@@ -18,8 +18,8 @@
             <h2>Admin</h2>
             <ul>
                 <li onclick="qlxe()" ><a>Quản Lý Xe</a></li>
-                <li onclick="qldh()" ><a>Quản Lý Đơn Hàng</a></li>
                 <li onclick="qlkh()"><a>Quản Lý Khách Hàng</a></li>
+                <li onclick="qldh()" ><a>Quản Lý Đơn Hàng</a></li>
                 <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
                 <li><a href="/Trang chu/html/trangchu.html">Thoát</a></li>
             </ul>
@@ -155,6 +155,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                
                     <th>Email</th>
                     <th>Số điện thoại</th>
                     <th>Tên đăng nhập</th>
@@ -312,9 +313,9 @@
             <br>
             <div class="period">
                 <span><h2>Khoảng thời gian:</h2></span>
-                <input type="date" id="">
+                <input type="date" id="tgmin">
                 <span>-</span>
-                <input type="date" id="">
+                <input type="date" id="tgmax">
             </div>
             <div id="TKXe">
                 <h2>Thống kê theo xe:</h2>
@@ -325,6 +326,7 @@
                             <th>Tên Xe</th>
                             <th>Số lượng bán ra</th>
                             <th>Tổng tiền thu được</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody id="kdlist">
@@ -339,8 +341,12 @@
                             <th>Tên Xe</th>
                             <th>Số lượng bán ra</th>
                             <th>Tổng tiền thu được</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
+                    <tbody id="mostSold">
+
+                    </tbody>
                 </table>
                 <br>
                 <h2>Xe bán ế nhất:</h2>
@@ -350,8 +356,12 @@
                             <th>Tên Xe</th>
                             <th>Số lượng bán ra</th>
                             <th>Tổng tiền thu được</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
+                    <tbody id="leastSold">
+
+                    </tbody>
                 </table>
             </div>
 
@@ -367,7 +377,7 @@
                             <th>Thao tác</th>
                         </tr>
                     </thead>
-                    <tbody id="kdlist">
+                    <tbody id="khlist">
 
                     </tbody>
                 </table>
@@ -381,6 +391,9 @@
                             <th>Thao tác</th>
                         </tr>
                     </thead>
+                    <tbody id="top5Customers">
+                        
+                    </tbody>
                 </table>
             </div>
         </section>
