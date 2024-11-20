@@ -467,3 +467,14 @@ input::-webkit-outer-spin-button {
 .delete-btn:hover {
     background-color: rgb(219, 0, 0);
 }
+.danhsachdonhang{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.danhsachdonhang h3 {
+    font-size: 20px;
+    margin-top: 30px;
+    color: #ff4400;
+
+}
