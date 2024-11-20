@@ -36,7 +36,7 @@ function renderKDList() {
                 <td>${product.name}</td>
                 <td>${totalSold}</td>
                 <td>${totalRevenue.toLocaleString()} VND</td>
-                <td><button onclick="viewOrders('${product.name}')">Xem Đơn Hàng</button></td>
+                <td><button class="view" onclick="viewOrders('${product.name}')">Xem Đơn Hàng</button></td>
             </tr>
         `;
     });
