@@ -39,7 +39,7 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div class="address-info" id="diachi">
-                    <label for="diachi">Địa chỉ nhận hàng:</label>
+                    <label for="diachi" class="address-title">Địa chỉ nhận hàng:</label>
                     <p class="address-details">
                         <div class="form-group required">
                             <label for="name">Tên</label>
@@ -96,10 +96,11 @@
             <div class="summary-section">   
                 <div class="item">
                     <span>Phí vận chuyển:</span>
-                    <span>Miễn Phí</span>
+                    <span class="price">Miễn Phí</span>
                 </div>
-                <div class="total-payment">
-                    <p><strong>Tổng thanh toán:</strong> <span id="tongthanhtoan"></span></p>
+                <div class="total-payment item">
+                    <p><strong>Tổng thanh toán:</strong></p>
+                    <p class="price"><span id="tongthanhtoan"></span></p>
                 </div>
             </div>
             
@@ -113,8 +114,10 @@
 </div>
 <div id="donhang" class="hidden">
     <div class="container">
+        <div class="line"></div><br>
         <h3>Danh sách hóa đơn</h3>
         <div id="danhsachhoadon"></div>
+        <br>
         <button onclick="dongdanhsachhoadon()" class="close-button">Đóng</button>
     </div>
 </div>

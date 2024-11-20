@@ -16,10 +16,10 @@ function hienthigiohang() {
         tongtien += thanhtien;
 
         lsp += `
-            <div class="cart-item product">
+            <div class="cart-item product price">
                 <img src="${sanpham.image}" alt="${sanpham.name}">
                 <div class="cart-item-info">
-                    <p>${sanpham.name}</p>
+                    <strong>${sanpham.name}</strong>
                     <p>Giá: ${sanpham.price.toLocaleString()} VNĐ</p>
                     <p>Số lượng:</p>
                     <div class="quantily">
@@ -27,7 +27,7 @@ function hienthigiohang() {
                         <input type="number" value= "${sanpham.sl}" min="1" id="soluong">
                         <button onclick="tangsoluong(${index})">+</button>
                     </div>
-                    <p>Thành tiền: ${thanhtien.toLocaleString()} VNĐ</p>
+                    <p style="color: #ff4400">Thành tiền: ${thanhtien.toLocaleString()} VNĐ</p>
                     <button onclick="xoa(${index})" class="delete-btn">Xóa</button>
                 </div>
             </div>
@@ -143,7 +143,7 @@ function xemtatcahoadon() {
             <p><strong>Email:</strong> ${hoadon.email}</p>
             <p><strong>Số điện thoại:</strong> ${hoadon.sodienthoai}</p>
             <p><strong>Địa chỉ:</strong> ${hoadon.diachi}</p>
-            <h5>Chi tiết sản phẩm:</h5>
+            <p><strong>Chi tiết sản phẩm:</strong></p>
             ${hoadon.sp.map(item => `
                 <div class="order-item">
                     <p>${item.name}</p>
@@ -152,7 +152,7 @@ function xemtatcahoadon() {
                     <p>Thành tiền: ${(item.price * item.sl).toLocaleString()} VNĐ</p>
                 </div>
             `).join("")}
-            <p><strong>Tổng tiền:</strong> ${hoadon.gia.toLocaleString()} VNĐ</p>
+            <i style="color: #ff4400"><strong>Tổng tiền:</strong> ${hoadon.gia.toLocaleString()} VNĐ</i>
         </div>
     `).join("");
 
