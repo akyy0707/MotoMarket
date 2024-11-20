@@ -37,10 +37,11 @@ document.querySelector(".login-btn").onclick = function() {
     const user = accounts.find(account => account.gmail === gmail && account.password === password);
 
 
-    if (user.name === 'admin') {
-        window.location.href = '/Admin/html/admin.html'
-    }
-    else if (user) {
+    if (user) {
+        if (user.name === "admin") {
+            window.location.href = '/Admin/html/admin.html'
+        }
+        
         alert("Đăng nhập thành công!");
         
         const currAcc = user;

@@ -162,6 +162,8 @@ function renderListUsers() {
     });
 
     document.getElementById('users-list').innerHTML = tableContent;
+
+    renderKDList();
 }
 
 function deleteUsers(id) {
