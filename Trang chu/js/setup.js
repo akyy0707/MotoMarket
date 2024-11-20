@@ -139,7 +139,13 @@
 window.onload = function(){
     const currAcc = JSON.parse(localStorage.getItem('currAcc'));
     
-    if(currAcc && Object.keys(currAcc).length > 0){
+    if(currAcc.name === 'admin'){
+        currAcc = {};
+        localStorage.setItem('currAcc', JSON.stringify(currAcc));
+        giohang = false;
+    }
+
+    if(currAcc && Object.keys(currAcc).length > 0 && currAcc.name !== 'admin'){
         document.getElementById("khname").innerHTML = `
             <p onmouseenter="hienthongtinkh()" onmouseout="anthongtinkh()">
                 Tài khoản: ${currAcc.name}
