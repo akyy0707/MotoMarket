@@ -7,7 +7,6 @@
     <title>Admin - Website Bán Xe</title>
     <link rel="stylesheet" href="/Admin/css/admin.css">
     <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
-    <link rel="stylesheet" href="/Admin/css/quanlydonhang.css">
 </head>
 
 <body onload="renderListProducts()">
@@ -18,9 +17,9 @@
         <div class="menu">
             <h2>Admin</h2>
             <ul>
-                <li onclick="qlxe()"><a>Quản Lý Xe</a></li>
-                <li onclick="qldh()"><a>Quản Lý Đơn Hàng</a></li>
-                <li><a>Quản Lý Khách Hàng</a></li>
+                <li onclick="qlxe()" ><a>Quản Lý Xe</a></li>
+                <li onclick="qldh()" ><a>Quản Lý Đơn Hàng</a></li>
+                <li onclick="qlkh()"><a>Quản Lý Khách Hàng</a></li>
                 <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
                 <li><a href="/Trang chu/html/trangchu.html">Thoát</a></li>
             </ul>
@@ -28,7 +27,7 @@
     </div>
 
     <!-- Quan ly xe -->
-    <div class="main-content" id="qlxe">
+    <div class="main-content" id="qlxe"  >
         <div class="main-header">
             <h1>Quản Lý Xe</h1>
         </div>
@@ -60,6 +59,7 @@
                 <h2>Thêm Xe Mới</h2>
                 <label>Tên xe</label>
                 <input type="text" name="Name" id="Name">
+                <span id="nameError" class="error"></span>
                 <br>
 
                 <label>Hãng</label>
@@ -77,14 +77,16 @@
     
                 <label>Miêu tả</label>
                 <input type="text" name="Mieuta" id="Mieuta">
+                <span id="mieutaError" class="error"></span>
                 <br>
     
                 <label>Giá</label>
                 <input type="text" name="Gia" id="Gia">
+                <span id="giaError" class="error"></span>
                 <br>
 
                 <label class="file-label">Ảnh    
-                    <input type="file" name="upload" id="upload"/>
+                    <input type="file" name="upload" id="upload" accept="image/*" onchange="previewImage()"/>
                 </label>
                 <div id="displayImg">
                 </div>
@@ -99,6 +101,7 @@
                 <h2>Sửa xe</h2>
                 <label>Tên xe</label>
                 <input type="text" name="Name" id="NameC">
+                <span id="nameError" class="error"></span>
                 <br>
 
                 <label>Hãng</label>
@@ -116,17 +119,122 @@
     
                 <label>Miêu tả</label>
                 <input type="text" name="Mieuta" id="MieutaC">
+                <span id="mieutaError" class="error"></span>
                 <br>
     
                 <label>Giá</label>
                 <input type="text" name="Gia" id="GiaC">
+                <span id="giaError" class="error"></span>
                 <br>
 
                 <label class="file-label">Ảnh    
                     <input type="file" name="upload" id="uploadC"/>
-                </label>
-                <div id="displayImg">
+                </label><br>
+                <div id="displayImg" style="position: relative; display: inline-block;">
                     <img id="currentImage" src="" alt="Current Image" width="50px" height="50px">
+                    <button type="button" id="deleteImageBtn" onclick="deleteImage()">X</button> 
+                </div>
+                
+                <button id="update-car-btn" type="button">Sửa Xe</button>
+                <button id="close-change-form" type="button" onclick="closeChangeForm()">Hủy</button>
+            </form>
+        </div>
+    </div>
+
+<!--Quan ly khach hang-->
+<div class="main-content hidden "  id="qlkh">
+    <div class="main-header">
+        <h1>Quản Lý Khách Hàng</h1>
+    </div>
+
+    <section class="table-section">
+        <button class="add-btn" onclick="showAddFormUsers()">Thêm Khách Hàng Mới</button>
+        <h2>Danh Sách Khách Hàng</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Mật khẩu</th> 
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="users-list">
+            </tbody>
+        </table>
+    </section>
+
+    <div class="form-popup" id="add-form-user">
+        <form id="add-user-form" class="popup-form">
+            <h2>Thêm người dùng</h2>
+           
+            <label>Địa chỉ email</label>
+        <input type="text" name="Email" id="Email">
+        <span id="Emaillerror" class="error"></span>
+        <br>
+        
+        <label>Số điện thoại</label>
+        <input type="text" name="Sdt" id="Sdt">
+        <span id="Sdterror" class="error"></span>
+        <br>
+
+        <label>Tên đăng nhập</label>
+        <input type="text" name="Tendangnhap" id="Tendangnhap">
+        <span id="Tendangnhaperror" class="error"></span>
+        <br>
+
+        <label>Mật khẩu</label>
+        <input type="text" name="Matkhau" id="Matkhau"> 
+        <span id="Matkhauerror" class="error"></span>
+
+        <input type="hidden" id="userId">
+        <br><br>
+        <button id="add-user-btn" type="submit" onclick="addUsers()">Thêm người dùng</button>
+        <button id="update-user-btn" class="hidden" type="submit" onclick="addUsers()">Sửa người dùng</button>
+            <button id="close-add-form" type="button" onclick="closeAddFormUsers()">Hủy</button>
+        </form>
+    </div>
+
+ <div class="form-popup hidden" id="change-form">
+            <form id="add-car-form" class="popup-form">
+                <h2>Sửa xe</h2>
+                <label>Tên xe</label>
+                <input type="text" name="Name" id="NameC">
+                <span id="nameError" class="error"></span>
+                <br>
+
+                <label>Hãng</label>
+                <select id="HangC" name="Hang">
+                    <option value="YAMAHA" > Yamaha </option>
+                    <option value="HONDA"> Honda </option>
+                </select> <br>
+    
+                <label>Loại xe</label>
+                <select id="LoaixeC" name="Loaixe">
+                    <option value="tay ga" > Xe tay ga </option>
+                    <option value="xe so"> Xe số </option>
+                </select> 
+                <br>
+    
+                <label>Miêu tả</label>
+                <input type="text" name="Mieuta" id="MieutaC">
+                <span id="mieutaError" class="error"></span>
+                <br>
+    
+                <label>Giá</label>
+                <input type="text" name="Gia" id="GiaC">
+                <span id="giaError" class="error"></span>
+                <br>
+
+                <label class="file-label">Ảnh    
+                    <input type="file" name="upload" id="uploadC"/>
+                </label><br>
+                <div id="displayImg" style="position: relative; display: inline-block;">
+                    <img id="currentImage" src="" alt="Current Image" width="50px" height="50px">
+                    <button type="button" id="deleteImageBtn" onclick="deleteImage()">X</button> 
                 </div>
                 
                 <button id="update-car-btn" type="button">Sửa Xe</button>
@@ -213,11 +321,15 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Tên Xe</th>
                             <th>Số lượng bán ra</th>
                             <th>Tổng tiền thu được</th>
                         </tr>
                     </thead>
+                    <tbody id="kdlist">
+
+                    </tbody>
                 </table>
                 <br>
                 <h2>Xe bán chạy nhất:</h2>
@@ -249,11 +361,15 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Tên khách hàng</th>
                             <th>Doanh thu</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
+                    <tbody id="kdlist">
+
+                    </tbody>
                 </table>
                 <br>
                 <h2>5 Khách hàng phát sinh nhiều doanh thu nhất trong khoảng thời gian trên:</h2>
@@ -272,7 +388,8 @@
 
 
     <script src="/Admin/js/quanlyxe.js"></script>
-    <script src="/Admin/js/quanlykinhdoanh.js"></script>
     <script src="/Admin/js/quanly.js"></script>
+    <script src="/Admin/js/quanlyacc.js"></script>
+    <script src="/Admin/js/quanlykinhdoanh.js"></script>
 </body>
 </html>

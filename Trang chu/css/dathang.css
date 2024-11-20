@@ -409,3 +409,25 @@ input::-webkit-outer-spin-button {
     width: 150px;
     height: auto;
 }
+
+.order-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.order-item {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}

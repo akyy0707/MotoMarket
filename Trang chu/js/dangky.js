@@ -20,8 +20,21 @@ document.querySelector(".register-btn").onclick = function() {
         return;
     }
 
+    if(name.length < 2){
+        alert("Tên phải có ít nhất 2 ký tự!");
+        document.getElementById("register-username").focus();
+        return;
+    }
+
     if(!gmail){
         alert("Phải nhập đầy đủ thông tin trên!!!");
+        document.getElementById("register-email").focus();
+        return;
+    }
+
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if(!gmailRegex.test(gmail)){
+        alert("Gmail phải đúng định dạng @gmail.com!");
         document.getElementById("register-email").focus();
         return;
     }
