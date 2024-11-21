@@ -7,6 +7,7 @@
     <title>Admin - Website Bán Xe</title>
     <link rel="stylesheet" href="/Admin/css/admin.css">
     <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
+    <link rel="stylesheet" href="/Admin/css/quanlydonhang.css">
 </head>
 
 <body onload="renderListProducts()">
@@ -254,7 +255,7 @@
             <button class="add-btn" onclick="">Lọc theo tình trạng đơn hàng</button>
             <br>
 
-            <div id="TKTGian">
+            <div id="TKTGian" >
                 <div class="period">
                     <span>
                         <h2>Khoảng thời gian:</h2>
@@ -266,14 +267,19 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Địa chỉ </th>
+                            <th>#</th>
+                            <th>Tên khách hàng</th>
                             <th>Thời gian đặt hàng</th>
+                            <th>Địa chỉ </th>
                             <th>Tổng tiền thu được</th>
                             <th>Tình trạng đơn hàng</th>
+                            <th>Chi tiết hoá đơn</th>    
                         </tr>
                     </thead>
-                </table>
+                    <tbody id="hdlist">
+
+                    </tbody>
+                </table >
             </div>
             <div id="TTTDHang" class="hidden">
 
@@ -288,13 +294,18 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Địa chỉ </th>
+                            <th>#</th>
+                            <th>Tên khách hàng</th>
                             <th>Thời gian đặt hàng</th>
+                            <th>Địa chỉ </th>
                             <th>Tổng tiền thu được</th>
                             <th>Tình trạng đơn hàng</th>
+                            <th>Chi tiết hoá đơn</th> 
                         </tr>
                     </thead>
+                    <tbody id="bills-list">
+
+                    </tbody>
                 </table>
             </div>
         </section>
@@ -390,6 +401,7 @@
     <script src="/Admin/js/quanlyxe.js"></script>
     <script src="/Admin/js/quanly.js"></script>
     <script src="/Admin/js/quanlyacc.js"></script>
+    <script src="/Admin/js/quanlydonhang.js"></script>
     <script src="/Admin/js/quanlykinhdoanh.js"></script>
 </body>
 </html>

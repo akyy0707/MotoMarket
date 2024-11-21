@@ -28,4 +28,5 @@ function qldh(){
     document.getElementById("qlxe").classList.add("hidden");
     document.getElementById("qlkd").classList.add("hidden");
     document.getElementById("qlkh").classList.add("hidden");
+    window.onload(renderListBills());
 }
