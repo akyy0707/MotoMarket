@@ -217,44 +217,62 @@ function updateBestAndWorstSelling(products, ds, tgMin, tgMax) {
 function viewUserOrders(gmail) {
     let ds = JSON.parse(localStorage.getItem('dshoadon')) || [];
     let ordersDetail = '';
-    
+
+    // Lấy giá trị tgmin và tgmax từ người dùng
+    let tgMin = new Date(document.getElementById('tgmin').value);
+    let tgMax = new Date(document.getElementById('tgmax').value);
+
     document.getElementById("kdmain-container").style = "display: flex";
 
     if (ds[gmail]) {
         ds[gmail].forEach(order => {
-            ordersDetail += `
-                <div class="hoadon">
-                    <h3>Đơn hàng của: ${order.ten}</h3>
-                    <p>Email: ${order.email}</p>
-                    <p>Số điện thoại: ${order.sodienthoai}</p>
-                    <p>Địa chỉ: ${order.diachi}</p>
-                    <p>Ngày mua: ${order.ngaymua}</p>
-                    <h4>Sản phẩm:</h4>
-                    <ul>
-            `;
-            order.sp.forEach(item => {
+            let orderDate = new Date(order.ngaymua);
+
+            if (
+                (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+            ) {
                 ordersDetail += `
-                    <li>
-                        <p>Tên sản phẩm: ${item.name}</p>
-                        <p>Loại: ${item.type}</p>
-                        <p>Giá: ${item.price.toLocaleString()} VND</p>
-                        <p>Số lượng: ${item.sl}</p>
-                        <p>Thành tiền: ${(item.sl * item.price).toLocaleString()} VND</p>
-                        <br>
-                    </li>
+                    <div class="hoadon">
+                        <h3>Đơn hàng của: ${order.ten}</h3>
+                        <p>Email: ${order.email}</p>
+                        <p>Số điện thoại: ${order.sodienthoai}</p>
+                        <p>Địa chỉ: ${order.diachi}</p>
+                        <p>Ngày mua: ${order.ngaymua}</p>
+                        <h4>Sản phẩm:</h4>
+                        <ul>
                 `;
-            });
-            ordersDetail += `
-                    </ul>
-                    <p class="kdprice">Tổng tiền đơn hàng: ${order.gia.toLocaleString()} VND</p>
-                    <br>
-                </div>
-            `;
+                order.sp.forEach(item => {
+                    ordersDetail += `
+                        <li>
+                            <p>Tên sản phẩm: ${item.name}</p>
+                            <p>Loại: ${item.type}</p>
+                            <p>Giá: ${item.price.toLocaleString()} VND</p>
+                            <p>Số lượng: ${item.sl}</p>
+                            <p>Thành tiền: ${(item.sl * item.price).toLocaleString()} VND</p>
+                            <br>
+                        </li>
+                    `;
+                });
+                ordersDetail += `
+                        </ul>
+                        <p class="kdprice">Tổng tiền đơn hàng: ${order.gia.toLocaleString()} VND</p>
+                        <br>
+                    </div>
+                `;
+            }
         });
+
+        if (!ordersDetail) {
+            ordersDetail = `<p>Không có hóa đơn nào trong khoảng thời gian đã chọn.</p>`;
+        }
 
         document.getElementById("kdmain-content").innerHTML = ordersDetail;
     }
 }
+
 
 
 document.getElementById('tgmin').addEventListener('change', renderKDList);
