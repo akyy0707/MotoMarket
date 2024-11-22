@@ -17,13 +17,26 @@ function renderKDList() {
     let ds = JSON.parse(localStorage.getItem('dshoadon')) || [];
     let userRevenues = [];
 
+    let tgMin = new Date(document.getElementById('tgmin').value);
+    let tgMax = new Date(document.getElementById('tgmax').value);
+
     acc.forEach((acc, index) => {
         if (index !== 0) {
             let userRevenue = 0;
 
             if (ds[acc.gmail]) {
                 ds[acc.gmail].forEach(order => {
-                    userRevenue += order.gia;
+                    let orderDate = new Date(order.ngaymua);
+
+                    // Kiểm tra xem đơn hàng có nằm trong khoảng thời gian không
+                    if (
+                        (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                        (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                        (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                        (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                    ) {
+                        userRevenue += order.gia;
+                    }
                 });
             }
 
@@ -91,9 +104,6 @@ function viewOrders(productName) {
 
     if (ordersDetail) {
         document.getElementById("kdmain-content").innerHTML = ordersDetail;
-    } else {
-        alert(`Không có đơn hàng nào cho sản phẩm: ${productName}`);
-        return;
     }
 }
 
@@ -230,26 +240,26 @@ function viewUserOrders(gmail) {
                         <p>Giá: ${item.price.toLocaleString()} VND</p>
                         <p>Số lượng: ${item.sl}</p>
                         <p>Thành tiền: ${(item.sl * item.price).toLocaleString()} VND</p>
+                        <br>
                     </li>
                 `;
             });
             ordersDetail += `
                     </ul>
                     <p class="kdprice">Tổng tiền đơn hàng: ${order.gia.toLocaleString()} VND</p>
-                    <hr>
+                    <br>
                 </div>
             `;
         });
 
         document.getElementById("kdmain-content").innerHTML = ordersDetail;
-    } else {
-        alert(`Không có đơn hàng nào cho khách hàng với email: ${gmail}`);
-        return;
     }
 }
 
-document.getElementById('tgmin').addEventListener('change', filterOrdersByDate);
-document.getElementById('tgmax').addEventListener('change', filterOrdersByDate);
+
+document.getElementById('tgmin').addEventListener('change', renderKDList);
+document.getElementById('tgmax').addEventListener('change', renderKDList);
 document.getElementById("kdclose-icon").onclick = function(){
+    document.getElementById("kdmain-content").innerHTML = '';
     document.getElementById("kdmain-container").style = "display: none";
 }
