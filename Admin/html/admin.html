@@ -7,6 +7,7 @@
     <title>Admin - Website Bán Xe</title>
     <link rel="stylesheet" href="/Admin/css/admin.css">
     <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
+    <link rel="stylesheet" href="/Admin/css/quanlydonhang.css">
     <link rel="stylesheet" href="/Trang chu/fontawesome/css/all.min.css">
 </head>
 
@@ -18,9 +19,9 @@
         <div class="menu">
             <h2>Admin</h2>
             <ul>
-                <li onclick="qlxe()" ><a>Quản Lý Xe</a></li>
+                <li onclick="qlxe()"><a>Quản Lý Xe</a></li>
                 <li onclick="qlkh()"><a>Quản Lý Khách Hàng</a></li>
-                <li onclick="qldh()" ><a>Quản Lý Đơn Hàng</a></li>
+                <li onclick="qldh()"><a>Quản Lý Đơn Hàng</a></li>
                 <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
                 <li><a href="/Trang chu/html/trangchu.html">Thoát</a></li>
             </ul>
@@ -28,7 +29,7 @@
     </div>
 
     <!-- Quan ly xe -->
-    <div class="main-content" id="qlxe"  >
+    <div class="main-content" id="qlxe">
         <div class="main-header">
             <h1>Quản Lý Xe</h1>
         </div>
@@ -65,29 +66,29 @@
 
                 <label>Hãng</label>
                 <select id="Hang" name="Hang">
-                    <option value="YAMAHA" > Yamaha </option>
+                    <option value="YAMAHA"> Yamaha </option>
                     <option value="HONDA"> Honda </option>
                 </select> <br>
-    
+
                 <label>Loại xe</label>
                 <select id="Loaixe" name="Loaixe">
-                    <option value="tay ga" > Xe tay ga </option>
+                    <option value="tay ga"> Xe tay ga </option>
                     <option value="xe so"> Xe số </option>
-                </select> 
+                </select>
                 <br>
-    
+
                 <label>Miêu tả</label>
                 <input type="text" name="Mieuta" id="Mieuta">
                 <span id="mieutaError" class="error"></span>
                 <br>
-    
+
                 <label>Giá</label>
                 <input type="text" name="Gia" id="Gia">
                 <span id="giaError" class="error"></span>
                 <br>
 
-                <label class="file-label">Ảnh    
-                    <input type="file" name="upload" id="upload" accept="image/*" onchange="previewImage()"/>
+                <label class="file-label">Ảnh
+                    <input type="file" name="upload" id="upload" accept="image/*" onchange="previewImage()" />
                 </label>
                 <div id="displayImg">
                 </div>
@@ -107,100 +108,100 @@
 
                 <label>Hãng</label>
                 <select id="HangC" name="Hang">
-                    <option value="YAMAHA" > Yamaha </option>
+                    <option value="YAMAHA"> Yamaha </option>
                     <option value="HONDA"> Honda </option>
                 </select> <br>
-    
+
                 <label>Loại xe</label>
                 <select id="LoaixeC" name="Loaixe">
-                    <option value="tay ga" > Xe tay ga </option>
+                    <option value="tay ga"> Xe tay ga </option>
                     <option value="xe so"> Xe số </option>
-                </select> 
+                </select>
                 <br>
-    
+
                 <label>Miêu tả</label>
                 <input type="text" name="Mieuta" id="MieutaC">
                 <span id="mieutaError" class="error"></span>
                 <br>
-    
+
                 <label>Giá</label>
                 <input type="text" name="Gia" id="GiaC">
                 <span id="giaError" class="error"></span>
                 <br>
 
-                <label class="file-label">Ảnh    
-                    <input type="file" name="upload" id="uploadC"/>
+                <label class="file-label">Ảnh
+                    <input type="file" name="upload" id="uploadC" />
                 </label><br>
                 <div id="displayImg" style="position: relative; display: inline-block;">
                     <img id="currentImage" src="" alt="Current Image" width="50px" height="50px">
-                    <button type="button" id="deleteImageBtn" onclick="deleteImage()">X</button> 
+                    <button type="button" id="deleteImageBtn" onclick="deleteImage()">X</button>
                 </div>
-                
+
                 <button id="update-car-btn" type="button">Sửa Xe</button>
                 <button id="close-change-form" type="button" onclick="closeChangeForm()">Hủy</button>
             </form>
         </div>
     </div>
 
-<!--Quan ly khach hang-->
-<div class="main-content hidden "  id="qlkh">
-    <div class="main-header">
-        <h1>Quản Lý Khách Hàng</h1>
-    </div>
+    <!--Quan ly khach hang-->
+    <div class="main-content hidden " id="qlkh">
+        <div class="main-header">
+            <h1>Quản Lý Khách Hàng</h1>
+        </div>
 
-    <section class="table-section">
-        <button class="add-btn" onclick="showAddFormUsers()">Thêm Khách Hàng Mới</button>
-        <h2>Danh Sách Khách Hàng</h2>
+        <section class="table-section">
+            <button class="add-btn" onclick="showAddFormUsers()">Thêm Khách Hàng Mới</button>
+            <h2>Danh Sách Khách Hàng</h2>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                
-                    <th>Email</th>
-                    <th>Số điện thoại</th>
-                    <th>Tên đăng nhập</th>
-                    <th>Mật khẩu</th> 
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody id="users-list">
-            </tbody>
-        </table>
-    </section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
 
-    <div class="form-popup" id="add-form-user">
-        <form id="add-user-form" class="popup-form">
-            <h2>Thêm người dùng</h2>
-           
-            <label>Địa chỉ email</label>
-        <input type="text" name="Email" id="Email">
-        <span id="Emaillerror" class="error"></span>
-        <br>
-        
-        <label>Số điện thoại</label>
-        <input type="text" name="Sdt" id="Sdt">
-        <span id="Sdterror" class="error"></span>
-        <br>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Mật khẩu</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="users-list">
+                </tbody>
+            </table>
+        </section>
 
-        <label>Tên đăng nhập</label>
-        <input type="text" name="Tendangnhap" id="Tendangnhap">
-        <span id="Tendangnhaperror" class="error"></span>
-        <br>
+        <div class="form-popup" id="add-form-user">
+            <form id="add-user-form" class="popup-form">
+                <h2>Thêm người dùng</h2>
 
-        <label>Mật khẩu</label>
-        <input type="text" name="Matkhau" id="Matkhau"> 
-        <span id="Matkhauerror" class="error"></span>
+                <label>Địa chỉ email</label>
+                <input type="text" name="Email" id="Email">
+                <span id="Emaillerror" class="error"></span>
+                <br>
 
-        <input type="hidden" id="userId">
-        <br><br>
-        <button id="add-user-btn" type="submit" onclick="addUsers()">Thêm người dùng</button>
-        <button id="update-user-btn" class="hidden" type="submit" onclick="addUsers()">Sửa người dùng</button>
-            <button id="close-add-form" type="button" onclick="closeAddFormUsers()">Hủy</button>
-        </form>
-    </div>
+                <label>Số điện thoại</label>
+                <input type="text" name="Sdt" id="Sdt">
+                <span id="Sdterror" class="error"></span>
+                <br>
 
- <div class="form-popup hidden" id="change-form">
+                <label>Tên đăng nhập</label>
+                <input type="text" name="Tendangnhap" id="Tendangnhap">
+                <span id="Tendangnhaperror" class="error"></span>
+                <br>
+
+                <label>Mật khẩu</label>
+                <input type="text" name="Matkhau" id="Matkhau">
+                <span id="Matkhauerror" class="error"></span>
+
+                <input type="hidden" id="userId">
+                <br><br>
+                <button id="add-user-btn" type="submit" onclick="addUsers()">Thêm người dùng</button>
+                <button id="update-user-btn" class="hidden" type="submit" onclick="addUsers()">Sửa người dùng</button>
+                <button id="close-add-form" type="button" onclick="closeAddFormUsers()">Hủy</button>
+            </form>
+        </div>
+
+        <div class="form-popup hidden" id="change-form">
             <form id="add-car-form" class="popup-form">
                 <h2>Sửa xe</h2>
                 <label>Tên xe</label>
@@ -210,35 +211,35 @@
 
                 <label>Hãng</label>
                 <select id="HangC" name="Hang">
-                    <option value="YAMAHA" > Yamaha </option>
+                    <option value="YAMAHA"> Yamaha </option>
                     <option value="HONDA"> Honda </option>
                 </select> <br>
-    
+
                 <label>Loại xe</label>
                 <select id="LoaixeC" name="Loaixe">
-                    <option value="tay ga" > Xe tay ga </option>
+                    <option value="tay ga"> Xe tay ga </option>
                     <option value="xe so"> Xe số </option>
-                </select> 
+                </select>
                 <br>
-    
+
                 <label>Miêu tả</label>
                 <input type="text" name="Mieuta" id="MieutaC">
                 <span id="mieutaError" class="error"></span>
                 <br>
-    
+
                 <label>Giá</label>
                 <input type="text" name="Gia" id="GiaC">
                 <span id="giaError" class="error"></span>
                 <br>
 
-                <label class="file-label">Ảnh    
-                    <input type="file" name="upload" id="uploadC"/>
+                <label class="file-label">Ảnh
+                    <input type="file" name="upload" id="uploadC" />
                 </label><br>
                 <div id="displayImg" style="position: relative; display: inline-block;">
                     <img id="currentImage" src="" alt="Current Image" width="50px" height="50px">
-                    <button type="button" id="deleteImageBtn" onclick="deleteImage()">X</button> 
+                    <button type="button" id="deleteImageBtn" onclick="deleteImage()">X</button>
                 </div>
-                
+
                 <button id="update-car-btn" type="button">Sửa Xe</button>
                 <button id="close-change-form" type="button" onclick="closeChangeForm()">Hủy</button>
             </form>
@@ -261,24 +262,29 @@
                     <span>
                         <h2>Khoảng thời gian:</h2>
                     </span>
-                    <input type="date" id="">
+                    <input type="date" id="start-date">
                     <span>-</span>
-                    <input type="date" id="">
+                    <input type="date" id="end-date">
                 </div>
                 <table>
                     <thead>
                         <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Địa chỉ </th>
+                            <th>#</th>
+                            <th>Tên khách hàng</th>
                             <th>Thời gian đặt hàng</th>
+                            <th>Địa chỉ</th>
                             <th>Tổng tiền thu được</th>
                             <th>Tình trạng đơn hàng</th>
+                            <th>Chi tiết hoá đơn</th>
                         </tr>
                     </thead>
+                    <tbody id="hdlist">
+                        <!-- Nội dung danh sách hóa đơn sẽ được chèn vào đây -->
+                    </tbody>
                 </table>
             </div>
-            <div id="TTTDHang" class="hidden">
 
+            <div id="TTTDHang" class="hidden">
                 <div class="order-status">
                     <select name="orderStatus" id="orderStatus" disabled>
                         <option value="unprocessed">Chưa xử lý</option>
@@ -290,17 +296,29 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Địa chỉ </th>
+                            <th>#</th>
+                            <th>Tên khách hàng</th>
                             <th>Thời gian đặt hàng</th>
+                            <th>Địa chỉ</th>
                             <th>Tổng tiền thu được</th>
                             <th>Tình trạng đơn hàng</th>
+                            <th>Chi tiết hoá đơn</th>
                         </tr>
                     </thead>
+                    <tbody id="bills-list">
+                        <!-- Nội dung danh sách hóa đơn theo trạng thái sẽ được chèn vào đây -->
+                    </tbody>
                 </table>
+            </div>
+
+            <!-- Thẻ div dùng để hiển thị chi tiết hóa đơn -->
+            <div id="order-details"
+                style="display: none; border: 1px solid #ccc; padding: 20px; background: #f9f9f9; margin-top: 20px;">
+                <!-- Nội dung chi tiết hóa đơn sẽ được chèn vào đây -->
             </div>
         </section>
     </div>
+
 
     <!-- Quan ly kinh doanh -->
     <div class="main-content hidden" id="qlkd">
@@ -313,7 +331,9 @@
             <button class="add-btn" onclick="hienkh()">Thống kê theo khách hàng</button>
             <br>
             <div class="period">
-                <span><h2>Khoảng thời gian:</h2></span>
+                <span>
+                    <h2>Khoảng thời gian:</h2>
+                </span>
                 <input type="date" id="tgmin">
                 <span>-</span>
                 <input type="date" id="tgmax">
@@ -350,7 +370,7 @@
                     </tbody>
                 </table>
                 <br>
-                <h2>Xe bán ế nhất:</h2>
+                <h2>Xe bán chậm nhất:</h2>
                 <table>
                     <thead>
                         <tr>
@@ -405,7 +425,7 @@
                 <h1>Chi tiết hóa đơn</h1>
                 <br>
                 <div class="kdmain-content" id="kdmain-content">
-                    
+
                 </div>
             </div>
         </div>
@@ -415,6 +435,8 @@
     <script src="/Admin/js/quanlyxe.js"></script>
     <script src="/Admin/js/quanly.js"></script>
     <script src="/Admin/js/quanlyacc.js"></script>
+    <script src="/Admin/js/quanlydonhang.js"></script>
     <script src="/Admin/js/quanlykinhdoanh.js"></script>
 </body>
+
 </html>

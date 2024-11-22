@@ -134,6 +134,10 @@
 // ];
 
 // localStorage.setItem('acc', JSON.stringify(acc));
+<<<<<<< HEAD
+localStorage.setItem('giohang', JSON.stringify([]));
+
+=======
 // localStorage.setItem('giohang', JSON.stringify([]));
 
 window.onload = function(){
@@ -162,3 +166,4 @@ window.onload = function(){
         
     }
 };
+>>>>>>> d8a78942a1c97b6b46465e514ac0aafd49b2f279
