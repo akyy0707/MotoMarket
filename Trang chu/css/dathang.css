@@ -148,10 +148,11 @@ input::-webkit-outer-spin-button {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .item .price {
-    color: red;
+    color: #ff4400;
     font-weight: bold;
 }
 
@@ -165,8 +166,11 @@ input::-webkit-outer-spin-button {
 }
 
 .product img {
-    width: 80px;
+    width: 150px;
     margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-details .product-info p {
@@ -197,7 +201,6 @@ input::-webkit-outer-spin-button {
     width: 30%;
     padding: 15px;
     background-color: #ffffff;
-    color: #888888;
     font-weight: bold;
     text-align: center;
     border: none;
@@ -217,6 +220,10 @@ input::-webkit-outer-spin-button {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
+}
+.back-button a {
+    text-decoration: none;
+    color: black;
 }
 .back-button:hover  {
     background-color: #a3a3a3;
@@ -430,4 +437,44 @@ input::-webkit-outer-spin-button {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+}
+.view-orders-button {
+    width: 30%;
+    padding: 15px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #3b9e52;   
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.view-orders-button:hover {
+    background-color: #218838;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.delete-btn {
+    width: 30%;
+    height: 30px;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border: white 1px solid;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.delete-btn:hover {
+    background-color: rgb(219, 0, 0);
+}
+.danhsachdonhang{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.danhsachdonhang h3 {
+    font-size: 20px;
+    margin-top: 30px;
+    color: #ff4400;
+
 }

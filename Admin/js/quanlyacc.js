@@ -11,12 +11,34 @@ function closeAddFormUsers() {
     addFormUser.style.display = 'none';
     document.getElementById("update-user-btn").classList.add("hidden");
     document.getElementById("add-user-btn").classList.remove("hidden");
-
+    document.getElementById("Email").value = '';
+        document.getElementById("Sdt").value = '';
+        document.getElementById("Tendangnhap").value = '';
+        document.getElementById("Matkhau").value = '';
+        document.getElementById("userId").value = '';
+        document.getElementById('Emaillerror').innerHTML = '';
+        document.getElementById('Sdterror').innerHTML = '';
+        document.getElementById('Tendangnhaperror').innerHTML = '';
+        document.getElementById('Matkhauerror').innerHTML = '';
 }
 
 
 function emailTest(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function regAdmin(){
+    let users = localStorage.getItem('acc') ? JSON.parse(localStorage.getItem('acc')) : [];
+        users.push({ 
+            gmail: "admin@gmail.com",
+            name: "admin",
+            phone: "0914100004",
+            password: "admin"
+        
+        });    
+        
+        localStorage.setItem('acc',JSON.stringify(users));
+        
 }
 
 function addUsers() {
@@ -78,8 +100,17 @@ function addUsers() {
         if (users.some((u, i) => u.name === tenuser && i !== parseInt(userId))) {
             alert("Tên đã tồn tại, vui lòng nhập tên khác!");
             return;
-        }        
-       
+        }    
+if(users.length===0){
+    users.push({ 
+        gmail: "admin@gmail.com",
+        name: "admin",
+        phone: "0914100004",
+        password: "admin"
+    
+    });    
+};
+        
         if (userId) {
             users[userId] = { 
                 gmail: email,
@@ -98,13 +129,13 @@ function addUsers() {
 
         localStorage.setItem('acc', JSON.stringify(users));
         renderListUsers();
+        closeAddFormUsers();
     }
         document.getElementById("Email").value = '';
         document.getElementById("Sdt").value = '';
         document.getElementById("Tendangnhap").value = '';
         document.getElementById("Matkhau").value = '';
 
-        closeAddFormUsers();
     }
 
 
@@ -112,10 +143,12 @@ function renderListUsers() {
     let users = JSON.parse(localStorage.getItem('acc')) || [];
     let tableContent = ``;
 
-    users.forEach((user, index) => {
+
+
+    users.slice(1).forEach((user, index) => {
         tableContent += `
             <tr>
-                <td style="padding: 0; ">${index + 1}</td>
+                <td style="padding: 0; ">${index+1 }</td>
                 <td style="padding: 0; ">${user.gmail}</td>
                 <td style="padding: 0; ">${user.phone}</td>
                 <td style="padding: 0; ">${user.name}</td>
@@ -129,6 +162,8 @@ function renderListUsers() {
     });
 
     document.getElementById('users-list').innerHTML = tableContent;
+
+    renderKDList();
 }
 
 function deleteUsers(id) {

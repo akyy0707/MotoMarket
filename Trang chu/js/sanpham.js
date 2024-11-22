@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const link = document.querySelector('.shop a');
+
+    link.addEventListener('click', function(event) {
+        if (!giohang) {
+            event.preventDefault();
+            alert("Vui lòng đăng nhập để mua hàng!!!");
+        }
+    });
+});
+
 function sanpham(sp) {
     const item = JSON.parse(decodeURIComponent(sp));
 
@@ -50,8 +61,6 @@ function sanpham(sp) {
             alert("Phải đăng nhập để mua hàng!!!");
         }
     })
-    
-
 }
 
 function plus() {
@@ -67,24 +76,26 @@ function minus() {
 }
 
 function themvaogiohang(sanpham) {
-    const sl = parseInt(document.getElementById("soluong").value);
-
-    // console.log(sanpham);
-    
-
-    let gh = JSON.parse(localStorage.getItem("giohang")) || [];
-
-    let existingProductIndex = gh.findIndex(item => item.name === sanpham.name);
-
-    if (existingProductIndex !== -1) {
-
-        gh[existingProductIndex].sl += sl;
-    } else {
-        let soluongsanpham = { ...sanpham, sl };
-        gh.push(soluongsanpham);
+    const currAcc = JSON.parse(localStorage.getItem("currAcc"));
+    if (!currAcc) {
+        alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
+        return;
     }
-    localStorage.setItem("giohang", JSON.stringify(gh));
 
+    const sl = parseInt(document.getElementById("soluong").value);
+    const giohangKey = `giohang_${currAcc.gmail}`; // Key cho giỏ hàng riêng của tài khoản
+    let giohang = JSON.parse(localStorage.getItem(giohangKey)) || [];
+
+    // Tìm sản phẩm trong giỏ hàng
+    const index = giohang.findIndex(item => item.name === sanpham.name);
+
+    if (index !== -1) {
+        giohang[index].sl += sl; // Cập nhật số lượng
+    } else {
+        giohang.push({ ...sanpham, sl }); // Thêm sản phẩm mới
+    }
+
+    localStorage.setItem(giohangKey, JSON.stringify(giohang)); // Lưu giỏ hàng vào localStorage
     alert("Sản phẩm đã được thêm vào giỏ hàng.");
 
     document.getElementById("sanphamoverlay").classList.add("hidden");

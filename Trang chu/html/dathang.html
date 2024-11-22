@@ -39,7 +39,7 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div class="address-info" id="diachi">
-                    <label for="diachi">Địa chỉ nhận hàng:</label>
+                    <label for="diachi" class="address-title">Địa chỉ nhận hàng:</label>
                     <p class="address-details">
                         <div class="form-group required">
                             <label for="name">Tên</label>
@@ -96,16 +96,17 @@
             <div class="summary-section">   
                 <div class="item">
                     <span>Phí vận chuyển:</span>
-                    <span>Miễn Phí</span>
+                    <span class="price">Miễn Phí</span>
                 </div>
-                <div class="total-payment">
-                    <p><strong>Tổng thanh toán:</strong> <span id="tongthanhtoan"></span></p>
+                <div class="total-payment item">
+                    <p><strong>Tổng thanh toán:</strong></p>
+                    <p class="price"><span id="tongthanhtoan"></span></p>
                 </div>
             </div>
             
             <div class="order">
-                <button class="back-button"><a href="/Trang chu/html/trangchu.html">Trở Lại Trang Chủ</a></button>
-                <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button>
+                <button class="back-button" onclick="goToHomePage()">Trở Lại Trang Chủ</button>
+                <!-- <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button> -->
                 <button class="order-button">Đặt Hàng</button>
             </div>
         </div>
@@ -113,9 +114,12 @@
 </div>
 <div id="donhang" class="hidden">
     <div class="container">
+        <div class="line"></div><br>
+        <div class="danhsachdonhang">
         <h3>Danh sách hóa đơn</h3>
+        <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button>
+        </div>
         <div id="danhsachhoadon"></div>
-        <button onclick="dongdanhsachhoadon()" class="close-button">Đóng</button>
     </div>
 </div>
 

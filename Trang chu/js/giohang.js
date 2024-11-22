@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     hienthigiohang();
 });
@@ -7,27 +9,35 @@ document.addEventListener('DOMContentLoaded', function() {
 // }
 
 function hienthigiohang() {
-    const giohang = JSON.parse(localStorage.getItem("giohang")) || [];
+
+    const giohangKey = `giohang_${currAcc.gmail}`;
+    const giohang = JSON.parse(localStorage.getItem(giohangKey)) || [];
     let tongtien = 0;
     let lsp = '';
+
+    if (giohang.length === 0) {
+        document.getElementById("lsp").innerHTML = "<p>Giỏ hàng trống.</p>";
+        document.getElementById("tongthanhtoan").innerText = "0 VNĐ";
+        return;
+    }
 
     giohang.forEach((sanpham, index) => {
         const thanhtien = sanpham.price * sanpham.sl;
         tongtien += thanhtien;
 
         lsp += `
-            <div class="cart-item product">
+            <div class="cart-item product price">
                 <img src="${sanpham.image}" alt="${sanpham.name}">
                 <div class="cart-item-info">
-                    <p>${sanpham.name}</p>
+                    <strong>${sanpham.name}</strong>
                     <p>Giá: ${sanpham.price.toLocaleString()} VNĐ</p>
                     <p>Số lượng:</p>
                     <div class="quantily">
                         <button onclick="giamsoluong(${index})">−</button> 
-                        <input type="number" value= "${sanpham.sl}" min="1" id="soluong">
+                        <input type="number" value="${sanpham.sl}" min="1" id="soluong">
                         <button onclick="tangsoluong(${index})">+</button>
                     </div>
-                    <p>Thành tiền: ${thanhtien.toLocaleString()} VNĐ</p>
+                    <p style="color: #ff4400">Thành tiền: ${thanhtien.toLocaleString()} VNĐ</p>
                     <button onclick="xoa(${index})" class="delete-btn">Xóa</button>
                 </div>
             </div>
@@ -35,9 +45,9 @@ function hienthigiohang() {
     });
 
     document.getElementById("lsp").innerHTML = lsp;
-
-    tinhtongthanhtoan(tongtien);
+    document.getElementById("tongthanhtoan").innerText = `${tongtien.toLocaleString()} VNĐ`;
 }
+
 
 function tinhtongthanhtoan(tongtien = null) {
     const phuongthucthanhtoan = document.getElementById("phuongthucthanhtoan").value;
@@ -53,31 +63,58 @@ function tinhtongthanhtoan(tongtien = null) {
 }
 
 function tangsoluong(index) {
-    let tangsoluong = JSON.parse(localStorage.getItem("giohang"));
-    tangsoluong[index].sl +=1;
-    localStorage.setItem("giohang", JSON.stringify(tangsoluong));
-    hienthigiohang(); 
+    const currAcc = JSON.parse(localStorage.getItem("currAcc"));
+    if (!currAcc) return;
+
+    const giohangKey = `giohang_${currAcc.gmail}`;
+    let tangsoluong = JSON.parse(localStorage.getItem(giohangKey)) || [];
+
+    if(tangsoluong[index]){
+        tangsoluong[index].sl +=1;    
+        localStorage.setItem(giohangKey, JSON.stringify(tangsoluong));
+        hienthigiohang(); 
+    }
 }
 
 function giamsoluong(index) {
-    let giamsoluong = JSON.parse(localStorage.getItem("giohang"));
-    if (giamsoluong[index].sl > 1) {
+    const currAcc = JSON.parse(localStorage.getItem("currAcc"));
+    if (!currAcc) return;
+
+    const giohangKey = `giohang_${currAcc.gmail}`;
+    let giamsoluong = JSON.parse(localStorage.getItem(giohangKey)) || [];
+
+    if (giamsoluong[index] && giamsoluong[index].sl > 1) {
         giamsoluong[index].sl -= 1;
-        localStorage.setItem("giohang", JSON.stringify(giamsoluong));
+        localStorage.setItem(giohangKey, JSON.stringify(giamsoluong));
         hienthigiohang();
     }
 }
 
 function xoa(index) {
-    let xoa = JSON.parse(localStorage.getItem("giohang"));
-    xoa.splice(index, 1);
-    localStorage.setItem("giohang", JSON.stringify(xoa));
-    hienthigiohang();
+    const currAcc = JSON.parse(localStorage.getItem("currAcc"));
+    if (!currAcc) return;
+
+    const giohangKey = `giohang_${currAcc.gmail}`;
+    let xoa = JSON.parse(localStorage.getItem(giohangKey)) || [];
+
+    if(xoa[index]){
+        xoa.splice(index, 1);
+        localStorage.setItem(giohangKey, JSON.stringify(xoa));
+        hienthigiohang();
+    }
 }
 
 document.querySelector('.order-button').addEventListener('click', function () {
-    const dathang = JSON.parse(localStorage.getItem("giohang")) || [];
-    if (dathang.length === 0) {
+    const currAcc = JSON.parse(localStorage.getItem("currAcc"));
+    if (!currAcc) {
+        alert("Vui lòng đăng nhập để đặt hàng.");
+        return;
+    }
+
+    const giohangKey = `giohang_${currAcc.gmail}`;
+    const giohang = JSON.parse(localStorage.getItem(giohangKey)) || [];
+
+    if (giohang.length === 0) {
         alert("Giỏ hàng đang trống. Vui lòng thêm sản phẩm trước khi đặt hàng.");
         return;
     }
@@ -94,17 +131,17 @@ document.querySelector('.order-button').addEventListener('click', function () {
         return;
     }
 
-    const diachiDayDu = `${diachi}, ${xaphuong}, ${quanhuyen}, ${thanhpho}`;
+    const diachidaydu = `${diachi}, ${xaphuong}, ${quanhuyen}, ${thanhpho}`;
 
     const homnay = new Date();
     const hoadon = {
-        ten: currAcc.name,
+        ten: ten,
         email: currAcc.gmail,
         sodienthoai: sodienthoai,
-        diachi: diachiDayDu,
+        diachi: diachidaydu,
         ngaymua: homnay.toLocaleDateString() + " " + homnay.toLocaleTimeString(),
-        sp: dathang,
-        gia: dathang.reduce((total, item) => total + (item.price * item.sl), 0)
+        sp: giohang,
+        gia: giohang.reduce((total, item) => total + (item.price * item.sl), 0)
     };
 
     let dshoadon = JSON.parse(localStorage.getItem("dshoadon")) || {};
@@ -116,9 +153,11 @@ document.querySelector('.order-button').addEventListener('click', function () {
 
     alert("Đặt hàng thành công!");
 
-    localStorage.removeItem("giohang");
+    localStorage.removeItem(giohangKey);
+
     hienthigiohang();
 });
+
 
 function xemtatcahoadon() {
     const currAcc = JSON.parse(localStorage.getItem("currAcc"));
@@ -126,6 +165,7 @@ function xemtatcahoadon() {
         alert("Vui lòng đăng nhập để xem hóa đơn.");
         return;
     }
+
 
     const dshoadon = JSON.parse(localStorage.getItem("dshoadon")) || {};
     const hoadons = dshoadon[currAcc.gmail] || [];
@@ -143,7 +183,7 @@ function xemtatcahoadon() {
             <p><strong>Email:</strong> ${hoadon.email}</p>
             <p><strong>Số điện thoại:</strong> ${hoadon.sodienthoai}</p>
             <p><strong>Địa chỉ:</strong> ${hoadon.diachi}</p>
-            <h5>Chi tiết sản phẩm:</h5>
+            <p><strong>Chi tiết sản phẩm:</strong></p>
             ${hoadon.sp.map(item => `
                 <div class="order-item">
                     <p>${item.name}</p>
@@ -152,7 +192,7 @@ function xemtatcahoadon() {
                     <p>Thành tiền: ${(item.price * item.sl).toLocaleString()} VNĐ</p>
                 </div>
             `).join("")}
-            <p><strong>Tổng tiền:</strong> ${hoadon.gia.toLocaleString()} VNĐ</p>
+            <i style="color: #ff4400"><strong>Tổng tiền:</strong> ${hoadon.gia.toLocaleString()} VNĐ</i>
         </div>
     `).join("");
 
@@ -162,4 +202,22 @@ function xemtatcahoadon() {
 
 function dongdanhsachhoadon() {
     document.getElementById("donhang").classList.add("hidden");
+}
+
+function taigiohang() {
+    const currAcc = JSON.parse(localStorage.getItem("currAcc"));
+    if (!currAcc) return;
+
+    const giohangKey = `giohang_${currAcc.gmail}`;
+    const giohang = JSON.parse(localStorage.getItem(giohangKey)) || [];
+
+    localStorage.setItem("giohang", JSON.stringify(giohang));
+    hienthigiohang();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    taigiohang();
+});
+function goToHomePage() {
+    window.location.href = "/Trang chu/html/trangchu.html";
 }

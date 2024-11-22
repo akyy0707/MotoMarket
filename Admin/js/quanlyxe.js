@@ -8,6 +8,9 @@ function showAddForm() {
 
 function closeAddForm() {
     addForm.style.display = 'none';
+    document.getElementById('nameError').innerHTML = '';
+    document.getElementById('mieutaError').innerHTML = '';
+    document.getElementById('giaError').innerHTML = '';
 }
 
 function showChangeForm() {
@@ -52,6 +55,10 @@ function addProducts() {
         const reader = new FileReader();
         reader.onload = function (event) {
             const imageSrc = event.target.result;
+            let products = JSON.parse(localStorage.getItem('xeArr')) || [];
+
+       
+
             const newProduct = {
                 image: imageSrc,
                 name: name,
@@ -61,7 +68,7 @@ function addProducts() {
                 price: price
             };
 
-            let products = JSON.parse(localStorage.getItem('xeArr')) || [];
+            
             products.push(newProduct);
             localStorage.setItem('xeArr', JSON.stringify(products));
 
