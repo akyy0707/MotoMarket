@@ -1,23 +1,17 @@
-// Hiển thị danh sách hóa đơn
 function renderListBills() {
-    // Lấy dữ liệu hóa đơn từ localStorage
     let billsData = JSON.parse(localStorage.getItem('dshoadon')) || {};
 
-    // Khởi tạo nội dung bảng
     let tableContent = ``;
 
-    // Duyệt qua từng email trong dshoadon
     for (const email in billsData) {
-        let customerBills = billsData[email]; // Lấy danh sách hóa đơn của khách hàng
+        let customerBills = billsData[email];
 
         customerBills.forEach((bill, index) => {
-            // Truy xuất thông tin cần thiết
             let customerName = bill.ten;
             let orderTime = bill.ngaymua;
             let address = bill.diachi;
             let totalAmount = bill.gia;
 
-            // Tạo nội dung dòng bảng
             tableContent += `
                 <tr>
                     <td>${index + 1}</td>
@@ -39,21 +33,16 @@ function renderListBills() {
         });
     }
 
-    // Đặt nội dung vào bảng
     document.getElementById('hdlist').innerHTML = tableContent;
 }
 
-// Hàm xem chi tiết đơn hàng dựa trên index và email khách hàng
 function viewOrderDetails(index, email) {
-    // Lấy dữ liệu hóa đơn từ localStorage
     let billsData = JSON.parse(localStorage.getItem('dshoadon')) || {};
-    let customerBills = billsData[email]; // Lấy danh sách hóa đơn của khách hàng
+    let customerBills = billsData[email];
     const statusSelect = document.querySelectorAll('select[name="orderStatus"]')[index];
     const currentStatus = statusSelect ? statusSelect.value : "Chưa xác định";
-    // Lấy thông tin chi tiết của đơn hàng
     let bill = customerBills[index];
 
-    // Tạo nội dung HTML cho thông tin chi tiết hóa đơn
     const orderDetailsHTML = `
         <div class="order-details-container">
             <h3>Thông tin khách hàng</h3>
@@ -71,28 +60,22 @@ function viewOrderDetails(index, email) {
         </div>
     `;
 
-    // Chèn nội dung vào div hiển thị
     const detailsContainer = document.getElementById('order-details');
     detailsContainer.innerHTML = orderDetailsHTML;
 
-    // Hiển thị thẻ div
     detailsContainer.style.display = 'block';
 }
 
-// Hàm đóng chi tiết hóa đơn
 function closeOrderDetails() {
     const detailsContainer = document.getElementById('order-details');
     detailsContainer.style.display = 'none';
-    detailsContainer.innerHTML = ''; // Xóa nội dung
+    detailsContainer.innerHTML = '';
 }
 
-// Hiển thị danh sách hóa đơn của một sản phẩm cụ thể
 function viewOrders(productName) {
-    // Lấy dữ liệu hóa đơn từ localStorage
     let billsData = JSON.parse(localStorage.getItem('dshoadon')) || {};
     let ordersDetail = '';
 
-    // Kiểm tra từng hóa đơn và sản phẩm
     for (let email in billsData) {
         billsData[email].forEach(order => {
             order.sp.forEach(item => {
@@ -112,7 +95,6 @@ function viewOrders(productName) {
         });
     }
 
-    // Hiển thị kết quả
     if (ordersDetail) {
         document.getElementById("kdmain-content").innerHTML = ordersDetail;
         document.getElementById("kdmain-container").style = "display: flex";
@@ -121,5 +103,4 @@ function viewOrders(productName) {
     }
 }
 
-// Khởi chạy hàm hiển thị danh sách hóa đơn
 renderListBills();

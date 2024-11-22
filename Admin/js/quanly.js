@@ -4,11 +4,9 @@ function qlxe(){
     document.getElementById("qldh").classList.add("hidden");
     document.getElementById("qlkh").classList.add("hidden");
     window.onload(renderListProducts());
-   
 }
 
 function qlkh(){
-
     document.getElementById("qlkh").classList.remove("hidden");
     document.getElementById("qlxe").classList.add("hidden");
     document.getElementById("qldh").classList.add("hidden");

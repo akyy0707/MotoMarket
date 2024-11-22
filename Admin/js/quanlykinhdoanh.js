@@ -28,7 +28,6 @@ function renderKDList() {
                 ds[acc.gmail].forEach(order => {
                     let orderDate = new Date(order.ngaymua);
 
-                    // Kiểm tra xem đơn hàng có nằm trong khoảng thời gian không
                     if (
                         (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
                         (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
@@ -80,32 +79,47 @@ function renderKDList() {
 function viewOrders(productName) {
     let ds = JSON.parse(localStorage.getItem('dshoadon')) || [];
     let ordersDetail = '';
-    
+
+    let tgMin = new Date(document.getElementById('tgmin').value);
+    let tgMax = new Date(document.getElementById('tgmax').value);
+
     document.getElementById("kdmain-container").style = "display: flex";
 
     for (let gmail in ds) {
         ds[gmail].forEach(order => {
-            order.sp.forEach(item => {
-                if (item.name === productName) {
-                    ordersDetail += `
-                        <div class="hoadon">
-                            <h3>Đơn hàng của: ${order.ten}</h3>
-                            <p>Email: ${order.email}</p>
-                            <p>Số điện thoại: ${order.sodienthoai}</p>
-                            <p>Ngày mua: ${order.ngaymua}</p>
-                            <p>Số lượng: ${item.sl}</p>
-                            <p class="kdprice">Thành tiền: ${(item.sl * item.price).toLocaleString()} VND</p>
-                        </div>
-                    `;
-                }
-            });
+            let orderDate = new Date(order.ngaymua);
+
+            if (
+                (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+            ) {
+                order.sp.forEach(item => {
+                    if (item.name === productName) {
+                        ordersDetail += `
+                            <div class="hoadon">
+                                <h3>Đơn hàng của: ${order.ten}</h3>
+                                <p>Email: ${order.email}</p>
+                                <p>Số điện thoại: ${order.sodienthoai}</p>
+                                <p>Ngày mua: ${order.ngaymua}</p>
+                                <p>Số lượng: ${item.sl}</p>
+                                <p class="kdprice">Thành tiền: ${(item.sl * item.price).toLocaleString()} VND</p>
+                            </div>
+                        `;
+                    }
+                });
+            }
         });
     }
 
     if (ordersDetail) {
         document.getElementById("kdmain-content").innerHTML = ordersDetail;
+    } else {
+        document.getElementById("kdmain-content").innerHTML = `<p>Không có hóa đơn nào trong khoảng thời gian đã chọn.</p>`;
     }
 }
+
 
 function filterOrdersByDate() {
     let products = JSON.parse(localStorage.getItem('xeArr')) || [];
@@ -218,7 +232,6 @@ function viewUserOrders(gmail) {
     let ds = JSON.parse(localStorage.getItem('dshoadon')) || [];
     let ordersDetail = '';
 
-    // Lấy giá trị tgmin và tgmax từ người dùng
     let tgMin = new Date(document.getElementById('tgmin').value);
     let tgMax = new Date(document.getElementById('tgmax').value);
 
