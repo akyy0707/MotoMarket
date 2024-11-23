@@ -50,8 +50,6 @@ function hienthigiohang() {
 
 
 function tinhtongthanhtoan(tongtien = null) {
-    const phuongthucthanhtoan = document.getElementById("phuongthucthanhtoan").value;
-    let phivanchuyen = 0;
 
     if (tongtien === null) {
         tongtien = JSON.parse(localStorage.getItem("giohang")).reduce((total, sanpham) => {
@@ -125,6 +123,7 @@ document.querySelector('.order-button').addEventListener('click', function () {
     const quanhuyen = document.getElementById("district").value.trim();
     const xaphuong = document.getElementById("ward").value.trim();
     const diachi = document.getElementById("address").value.trim();
+    const phuongthucthanhtoan = document.getElementById("phuongthucthanhtoan").value;
 
     if (!ten || !thanhpho || !sodienthoai || !quanhuyen || !xaphuong || !diachi) {
         alert("Vui lòng điền đầy đủ thông tin địa chỉ nhận hàng.");
@@ -134,14 +133,29 @@ document.querySelector('.order-button').addEventListener('click', function () {
     const diachidaydu = `${diachi}, ${xaphuong}, ${quanhuyen}, ${thanhpho}`;
 
     const homnay = new Date();
+
+    let phuongthucHienThi = "";
+    
+    switch (phuongthucthanhtoan) {
+        case "cod":
+            phuongthucHienThi = "Thanh toán khi nhận hàng (COD)";
+            break;
+        case "thetinhdung":
+            phuongthucHienThi = "Thẻ tín dụng / Thẻ ATM";
+            break;
+        default:
+    }
+
     const hoadon = {
         ten: ten,
         email: currAcc.gmail,
         sodienthoai: sodienthoai,
         diachi: diachidaydu,
+        phuongthucthanhtoan: phuongthucHienThi,
         ngaymua: homnay.toLocaleDateString() + " " + homnay.toLocaleTimeString(),
         sp: giohang,
-        gia: giohang.reduce((total, item) => total + (item.price * item.sl), 0)
+        gia: giohang.reduce((total, item) => total + (item.price * item.sl), 0),
+        trangthai: "Chưa xử lý"
     };
 
     let dshoadon = JSON.parse(localStorage.getItem("dshoadon")) || {};
@@ -177,12 +191,14 @@ function xemtatcahoadon() {
 
     const danhsachhoadon = hoadons.map((hoadon, index) => `
         <div class="order-card">
-            <h4>Hóa đơn #${index + 1}</h4>
+            <h4>Hóa đơn #${index + 1}</h4> 
+            <p><strong>Trạng thái:</strong> ${hoadon.trangthai}</p>
             <p><strong>Ngày đặt:</strong> ${hoadon.ngaymua}</p>
             <p><strong>Tên:</strong> ${hoadon.ten}</p>
             <p><strong>Email:</strong> ${hoadon.email}</p>
             <p><strong>Số điện thoại:</strong> ${hoadon.sodienthoai}</p>
             <p><strong>Địa chỉ:</strong> ${hoadon.diachi}</p>
+            <p><strong>Phương thức thanh toán:</strong> ${hoadon.phuongthucthanhtoan}</p>
             <p><strong>Chi tiết sản phẩm:</strong></p>
             ${hoadon.sp.map(item => `
                 <div class="order-item">
@@ -200,9 +216,6 @@ function xemtatcahoadon() {
     document.getElementById("donhang").classList.remove("hidden");
 }
 
-function dongdanhsachhoadon() {
-    document.getElementById("donhang").classList.add("hidden");
-}
 
 function taigiohang() {
     const currAcc = JSON.parse(localStorage.getItem("currAcc"));
@@ -218,6 +231,7 @@ function taigiohang() {
 document.addEventListener('DOMContentLoaded', function() {
     taigiohang();
 });
+
 function goToHomePage() {
     window.location.href = "/Trang chu/html/trangchu.html";
 }
