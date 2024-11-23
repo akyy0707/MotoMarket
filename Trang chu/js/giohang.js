@@ -166,7 +166,6 @@ function xemtatcahoadon() {
         return;
     }
 
-
     const dshoadon = JSON.parse(localStorage.getItem("dshoadon")) || {};
     const hoadons = dshoadon[currAcc.gmail] || [];
 
