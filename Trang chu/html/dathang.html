@@ -106,7 +106,7 @@
             
             <div class="order">
                 <button class="back-button" onclick="goToHomePage()">Trở Lại Trang Chủ</button>
-                <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button>
+                <!-- <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button> -->
                 <button class="order-button">Đặt Hàng</button>
             </div>
         </div>
@@ -115,7 +115,10 @@
 <div id="donhang" class="hidden">
     <div class="container">
         <div class="line"></div><br>
+        <div class="danhsachdonhang">
         <h3>Danh sách hóa đơn</h3>
+        <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button>
+        </div>
         <div id="danhsachhoadon"></div>
     </div>
 </div>

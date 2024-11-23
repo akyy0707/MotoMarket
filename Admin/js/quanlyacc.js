@@ -154,8 +154,8 @@ function renderListUsers() {
                 <td style="padding: 0; ">${user.name}</td>
                 <td style="padding: 0; ">${user.password}</td>
                 <td>
-                    <button href='#' id="delete-btn" onclick='deleteUsers(${index})'>Xóa</button>
-                    <button href='#' id="edit-btn" onclick='editUsers(${index})'>Sửa</button>
+                    <button href='#' id="delete-btn" onclick='deleteUsers(${index+1})'>Xóa</button>
+                    <button href='#' id="edit-btn" onclick='editUsers(${index+1})'>Sửa</button>
                 </td>
             </tr>
         `;
