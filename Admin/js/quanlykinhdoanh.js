@@ -29,10 +29,13 @@ function renderKDList() {
                     let orderDate = new Date(order.ngaymua);
 
                     if (
-                        (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
-                        (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
-                        (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
-                        (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                        order.trangthai === "Đã giao hàng" && 
+                        (
+                            (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                            (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                            (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                            (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                        )
                     ) {
                         userRevenue += order.gia;
                     }
@@ -76,6 +79,7 @@ function renderKDList() {
     document.getElementById('top5Customers').innerHTML = top5Table;
 }
 
+
 function viewOrders(productName) {
     let ds = JSON.parse(localStorage.getItem('dshoadon')) || [];
     let ordersDetail = '';
@@ -90,10 +94,13 @@ function viewOrders(productName) {
             let orderDate = new Date(order.ngaymua);
 
             if (
-                (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
-                (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
-                (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
-                (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                order.trangthai === "Đã giao hàng" && 
+                (
+                    (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                    (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                    (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                    (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                )
             ) {
                 order.sp.forEach(item => {
                     if (item.name === productName) {
@@ -139,10 +146,13 @@ function filterOrdersByDate() {
                 let orderDate = new Date(order.ngaymua);
 
                 if (
-                    (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
-                    (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
-                    (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
-                    (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                    order.trangthai === "Đã giao hàng" && 
+                    (
+                        (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                        (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                        (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                        (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                    )
                 ) {
                     order.sp.forEach(item => {
                         if (item.name === product.name) {
@@ -182,10 +192,13 @@ function updateBestAndWorstSelling(products, ds, tgMin, tgMax) {
                 let orderDate = new Date(order.ngaymua);
 
                 if (
-                    (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
-                    (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
-                    (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
-                    (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                    order.trangthai === "Đã giao hàng" && 
+                    (
+                        (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                        (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                        (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                        (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                    )
                 ) {
                     order.sp.forEach(item => {
                         if (item.name === product.name) {
@@ -242,10 +255,13 @@ function viewUserOrders(gmail) {
             let orderDate = new Date(order.ngaymua);
 
             if (
-                (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
-                (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
-                (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
-                (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                order.trangthai === "Đã giao hàng" && 
+                (
+                    (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
+                    (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
+                    (!isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()) && orderDate >= tgMin) ||
+                    (isNaN(tgMin.getTime()) && isNaN(tgMax.getTime()))
+                )
             ) {
                 ordersDetail += `
                     <div class="hoadon">
@@ -277,16 +293,13 @@ function viewUserOrders(gmail) {
                 `;
             }
         });
-
-        if (!ordersDetail) {
-            ordersDetail = `<p>Không có hóa đơn nào trong khoảng thời gian đã chọn.</p>`;
-        }
-
+    }
+    if (ordersDetail) {
         document.getElementById("kdmain-content").innerHTML = ordersDetail;
+    } else {
+        document.getElementById("kdmain-content").innerHTML = `<p>Không có hóa đơn nào trong khoảng thời gian đã chọn.</p>`;
     }
 }
-
-
 
 document.getElementById('tgmin').addEventListener('change', renderKDList);
 document.getElementById('tgmax').addEventListener('change', renderKDList);
