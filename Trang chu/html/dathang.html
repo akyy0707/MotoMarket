@@ -41,42 +41,42 @@
                 <div class="address-info" id="diachi">
                     <label for="diachi" class="address-title">Địa chỉ nhận hàng:</label>
                     <p class="address-details">
+                    <div class="form-group required">
+                        <label for="name">Tên</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="row">
                         <div class="form-group required">
-                            <label for="name">Tên</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="city">Tỉnh / Thành phố</label>
+                            <input type="text" id="city" name="city" required>
                         </div>
-                        
-                        <div class="row">
-                            <div class="form-group required">
-                                <label for="city">Tỉnh / Thành phố</label>
-                                <input type="text" id="city" name="city" required>
-                            </div>
-                            <div class="form-group required">
-                                <label for="phone">Số điện thoại</label>
-                                <input type="text" id="phone" name="phone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="form-group required">
-                                <label for="district">Quận / Huyện</label>
-                                <input type="text" id="district" name="district" required>
-                            </div>
-                            <div class="form-group required">
-                                <label for="ward">Xã / Phường</label>
-                                <input type="text" id="ward" name="ward" required>
-                            </div>
-                        </div>
-                        
                         <div class="form-group required">
-                            <label for="address">Địa chỉ</label>
-                            <input type="text" id="address" name="address" required>
+                            <label for="phone">Số điện thoại</label>
+                            <input type="text" id="phone" name="phone" required>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group required">
+                            <label for="district">Quận / Huyện</label>
+                            <input type="text" id="district" name="district" required>
+                        </div>
+                        <div class="form-group required">
+                            <label for="ward">Xã / Phường</label>
+                            <input type="text" id="ward" name="ward" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
                     </p>
                     <button id="use-saved-address-button">Sử dụng địa chỉ đã lưu</button>
                     <button id="save-address-button">Lưu địa chỉ mới</button>
-                <select id="saved-addresses">
-                </select>
+                    <select id="saved-addresses">
+                    </select>
                 </div>
             </div>
             <div class="product-section" id="sanphamtronggiohang">
@@ -84,7 +84,7 @@
                 <div id="lsp"></div>
 
             </div>
-            
+
             <div class="payment-section">
                 <h3>Phương thức thanh toán:</h3>
                 <select id="phuongthucthanhtoan">
@@ -92,8 +92,8 @@
                     <option value="thetinhdung">Thẻ tín dụng / Thẻ ATM</option>
                 </select>
             </div>
-            
-            <div class="summary-section">   
+
+            <div class="summary-section">
                 <div class="item">
                     <span>Phí vận chuyển:</span>
                     <span class="price">Miễn Phí</span>
@@ -103,7 +103,7 @@
                     <p class="price"><span id="tongthanhtoan"></span></p>
                 </div>
             </div>
-            
+
             <div class="order">
                 <button class="back-button" onclick="goToHomePage()">Trở Lại Trang Chủ</button>
                 <!-- <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button> -->
@@ -111,17 +111,18 @@
             </div>
         </div>
     </div>
-</div>
-<div id="donhang" class="hidden">
-    <div class="container">
-        <div class="line"></div><br>
-        <div class="danhsachdonhang">
-        <h3>Danh sách hóa đơn</h3>
-        <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button>
-        </div>
-        <div id="danhsachhoadon"></div>
     </div>
-</div>
+    <div id="donhang" class="hidden">
+        <div class="container">
+           <div class="line"></div>
+           <br>
+            <div class="danhsachdonhang">
+                <h3>Danh sách hóa đơn</h3>
+                <button onclick="xemtatcahoadon()" class="view-orders-button">Xem Tất Cả Đơn Hàng</button>
+            </div>
+            <div id="danhsachhoadon"></div>
+        </div>
+    </div>
 
 
     <footer class="footer">
@@ -146,10 +147,10 @@
                 <img src="/image/thongtin.png" alt="logo">
             </div>
         </div>
-        
-    </footer>   
-    <script src="/Trang chu/js/dathang.js"></script> 
+
+    </footer>
+    <script src="/Trang chu/js/dathang.js"></script>
     <script src="/Trang chu/js/giohang.js"></script>
 </body>
- 
+
 </html>

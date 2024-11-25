@@ -20,14 +20,14 @@ function renderListBills() {
                     <td>${address}</td>
                     <td>${totalAmount.toLocaleString()} VND</td>
                     <td>
-                        <select name="orderStatus">
+                        <select name="orderStatus" class="order-status" style="width: 100%">
                             <option value="unprocessed" ${bill.status === "unprocessed" ? "selected" : ""}>Chưa xử lý</option>
                             <option value="confirmed" ${bill.status === "confirmed" ? "selected" : ""}>Đã xác nhận</option>
                             <option value="shipped" ${bill.status === "shipped" ? "selected" : ""}>Đã giao</option>
                             <option value="cancelled" ${bill.status === "cancelled" ? "selected" : ""}>Đã hủy</option>
                         </select>
                     </td>
-                    <td><button onclick="viewOrderDetails(${index}, '${email}')">Xem đơn hàng</button></td>
+                    <td><button class="view" onclick="viewOrderDetails(${index}, '${email}')">Chi tiết</button></td>
                 </tr>
             `;
         });
