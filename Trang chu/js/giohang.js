@@ -190,8 +190,10 @@ function xemtatcahoadon() {
 
     const danhsachhoadon = hoadons.map((hoadon, index) => `
         <div class="order-card">
+        <div style="display: flex; justify-content: space-between; font-size:18px">
             <h4>Hóa đơn #${index + 1}</h4> 
-            <p><strong>Trạng thái:</strong> ${hoadon.trangthai}</p>
+            <p><strong style="color: blue">Trạng thái:</strong> ${hoadon.trangthai}</p>
+        </div>
             <p><strong>Ngày đặt:</strong> ${hoadon.ngaymua}</p>
             <p><strong>Tên:</strong> ${hoadon.ten}</p>
             <p><strong>Email:</strong> ${hoadon.email}</p>
