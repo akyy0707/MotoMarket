@@ -27,7 +27,7 @@ function addProducts() {
     const brand = document.getElementById('Hang').value;
     const type = document.getElementById('Loaixe').value;
     const description = document.getElementById('Mieuta').value;
-    const price = parseFloat(document.getElementById('Gia').value.replace(/,/g, ''));
+    const price = document.getElementById('GiaC').value;
     const imageInput = document.getElementById('upload');
     const file = imageInput.files[0];
     if ((name)==='') {
@@ -132,7 +132,7 @@ function editproducts(id) {
     document.getElementById("HangC").value = product.brand;
     document.getElementById("LoaixeC").value = product.type;
     document.getElementById("MieutaC").value = product.description;
-    document.getElementById("GiaC").value = product.price.toLocaleString();
+    document.getElementById("GiaC").value = product.price;
 
     const currentImage = document.getElementById("currentImage");
 
