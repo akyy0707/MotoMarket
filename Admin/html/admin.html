@@ -162,6 +162,7 @@
                         <th>Số điện thoại</th>
                         <th>Tên đăng nhập</th>
                         <th>Mật khẩu</th>
+                        <th>Vai trò</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -172,8 +173,10 @@
 
         <div class="form-popup" id="add-form-user">
             <form id="add-user-form" class="popup-form">
-                <h2>Thêm người dùng</h2>
-
+            
+                <h2 id="header-form">Thêm người dùng</h2>
+  
+         
                 <label>Địa chỉ email</label>
                 <input type="text" name="Email" id="Email">
                 <span id="Emaillerror" class="error"></span>
@@ -192,6 +195,12 @@
                 <label>Mật khẩu</label>
                 <input type="text" name="Matkhau" id="Matkhau">
                 <span id="Matkhauerror" class="error"></span>
+
+                <select id="Vaitro" name="Vaitro">
+                    <option value="Khách hàng"> Khách hàng </option>
+                    <option value="Admin"> Admin </option>
+                </select>
+            
 
                 <input type="hidden" id="userId">
                 <br><br>

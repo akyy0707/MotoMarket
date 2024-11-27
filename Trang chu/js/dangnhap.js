@@ -38,7 +38,7 @@ document.querySelector(".login-btn").onclick = function() {
 
 
     if (user) {
-        if (user.name === "admin") {
+        if (user.role === "Admin") {
             window.location.href = '/Admin/html/admin.html'
         }
         
