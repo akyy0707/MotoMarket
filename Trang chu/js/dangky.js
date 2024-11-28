@@ -64,7 +64,8 @@ document.querySelector(".register-btn").onclick = function() {
         name: name,
         phone: phone,
         password: password,
-        role: "Khách hàng"
+        role: "Khách hàng",
+        block: "no"
     };
 
     accounts.push(newAcc);

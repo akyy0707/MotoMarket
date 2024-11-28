@@ -36,8 +36,14 @@ document.querySelector(".login-btn").onclick = function() {
 
     const user = accounts.find(account => account.gmail === gmail && account.password === password);
 
+if(user){
+    if(user.block==="yes"){
+      
+    }
+}
 
     if (user) {
+        if(user.block==="no"){
         if (user.role === "Admin") {
             window.location.href = '../../Admin/html/admin.html'
         }
@@ -60,7 +66,10 @@ document.querySelector(".login-btn").onclick = function() {
         successLogin();
         closeLogin();
         giohang = true;
-    } else {
+    }else if(user.block==="yes"){
+        alert("Tài khoản của bạn đã bị khóa!!");
+        
+    }} else {
         alert("Sai tên đăng nhập hoặc mật khẩu!");
     }
 };

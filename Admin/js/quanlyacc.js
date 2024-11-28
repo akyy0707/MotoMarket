@@ -100,7 +100,8 @@ function addUsers() {
                 name: tenuser,
                 phone: sdt,
                 password: matkhau,
-                role: role
+                role: role,
+                block: "no"
              };
         } else {
             users.push({
@@ -108,7 +109,8 @@ function addUsers() {
                 name: tenuser,
                 phone: sdt,
                 password: matkhau,
-                role: role
+                role: role,
+                block: "no"
             });
         }
 
@@ -142,6 +144,7 @@ function renderListUsers() {
                 <td>
                     <button href='#' id="delete-btn" onclick='deleteUsers(${index})'>Xóa</button>
                     <button href='#' id="edit-btn" onclick='editUsers(${index})'>Sửa</button>
+                    <button href='#' id="block-btn" onclick='blockUsers(${index})'>Khóa</button>
                 </td>
             </tr>
         `;
@@ -150,6 +153,20 @@ function renderListUsers() {
     document.getElementById('users-list').innerHTML = tableContent;
 
     renderKDList();
+}
+
+function blockUsers(id){
+    let users = localStorage.getItem('acc') ? JSON.parse(localStorage.getItem('acc')) : [];
+    if(users[id].block==="no"){
+        users[id].block="yes";
+        alert("Đã khóa tài khoản");
+       
+    } else if(users[id].block==="yes") {
+        users[id].block="no";
+        alert("Đã mở khóa tài khoản");
+       
+    }
+    localStorage.setItem('acc',JSON.stringify(users));
 }
 
 function deleteUsers(id) {
