@@ -8,12 +8,44 @@
 //       price: 20000
 //     },
 //     {
+//         image: '/image/YAMAHA/YAMAHA NVX/NVXtrang.png',
+//         name: 'YAMAHA NVX Trắng',
+//         description: 'A reliable and fuel-efficient sedan',
+//         type: 'tay ga',
+//         brand: 'YAMAHA',
+//         price: 20000
+//     },
+//     {
+//         image: '/image/YAMAHA/YAMAHA NVX/NVXxanh.png',
+//         name: 'YAMAHA NVX Xanh',
+//         description: 'A reliable and fuel-efficient sedan',
+//         type: 'tay ga',
+//         brand: 'YAMAHA',
+//         price: 20000
+//     },
+//     {
 //       image: '/image/YAMAHA/Janus/Janusden.png',
 //       name: 'YAMAHA Janus Đen',
 //       description: 'A powerful and stylish sports car',
 //       type: 'tay ga',
 //       brand: 'YAMAHA',
 //       price: 35000
+//     },
+//     {
+//         image: '/image/YAMAHA/Janus/Janustrang.png',
+//         name: 'YAMAHA Janus Trắng',
+//         description: 'A powerful and stylish sports car',
+//         type: 'tay ga',
+//         brand: 'YAMAHA',
+//         price: 35000
+//     },
+//     {
+//         image: '/image/YAMAHA/Janus/Janusxanh.png',
+//         name: 'YAMAHA Janus Xanh',
+//         description: 'A powerful and stylish sports car',
+//         type: 'tay ga',
+//         brand: 'YAMAHA',
+//         price: 35000
 //     },
 //     {
 //         image: '/image/YAMAHA/Grande/Grandedo.png',
@@ -26,6 +58,22 @@
 //     {
 //         image: '/image/YAMAHA/Latte/latteden.png',
 //         name: 'YAMAHA Latte Đen',
+//         description: 'A powerful and stylish sports car',
+//         type: 'tay ga',
+//         brand: 'YAMAHA',
+//         price: 30000
+//     },
+//     {
+//         image: '/image/YAMAHA/Latte/lattedo.png',
+//         name: 'YAMAHA Latte Đỏ',
+//         description: 'A powerful and stylish sports car',
+//         type: 'tay ga',
+//         brand: 'YAMAHA',
+//         price: 30000
+//     },
+//     {
+//         image: '/image/YAMAHA/Latte/lattetrang.png',
+//         name: 'YAMAHA Latte Trắng',
 //         description: 'A powerful and stylish sports car',
 //         type: 'tay ga',
 //         brand: 'YAMAHA',
@@ -46,22 +94,6 @@
 //         type: 'xe so',
 //         brand: 'HONDA',
 //         price: 33000
-//     },
-//     {
-//         image: '/image/YAMAHA/Janus/Janustrang.png',
-//         name: 'YAMAHA Janus Trắng',
-//         description: 'A powerful and stylish sports car',
-//         type: 'tay ga',
-//         brand: 'YAMAHA',
-//         price: 35000
-//     },
-//     {
-//         image: '/image/YAMAHA/Janus/Janusxanh.png',
-//         name: 'YAMAHA Janus Xanh',
-//         description: 'A powerful and stylish sports car',
-//         type: 'tay ga',
-//         brand: 'YAMAHA',
-//         price: 35000
 //     },
 //     {
 //         image: '/image/HONDA/RSX FI/rsxxanh.png',
@@ -129,7 +161,16 @@
 //         gmail: "admin@gmail.com",
 //         name: "admin",
 //         phone: "0914100004",
-//         password: "admin"
+//         password: "admin",
+//         role: "Admin"
+//     },
+//     {
+//         makhachhang: 2,
+//         gmail: "ga@gmail.com",
+//         name: "ga",
+//         phone: "0966455917",
+//         password: "123",
+//         role: "Khách hàng"
 //     }
 // ];
 
@@ -139,7 +180,7 @@
 window.onload = function(){
     const currAcc = JSON.parse(localStorage.getItem('currAcc'));
     
-    if(currAcc.name === 'admin'){
+    if(currAcc.role === 'Admin'){
         currAcc = {};
         localStorage.setItem('currAcc', JSON.stringify(currAcc));
         giohang = false;
@@ -159,6 +200,5 @@ window.onload = function(){
         successLogin();
         
         giohang = true;
-        
     }
 };

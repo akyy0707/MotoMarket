@@ -13,7 +13,6 @@ document.querySelector(".register-btn").onclick = function() {
     const gmail = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
     const phone = document.getElementById("register-sdt").value;
-    const role="Khách hàng";  
 
     if(!name){
         alert("Phải nhập đầy đủ thông tin trên!!!");
@@ -40,6 +39,18 @@ document.querySelector(".register-btn").onclick = function() {
         return;
     }
 
+    if(!phone){
+        alert("Phải nhập đầy đủ thông tin trên!!!");
+        document.getElementById("register-sdt").focus();
+        return;
+    }
+
+    if(phone.length !== 10){
+        alert("Phải nhập đúng số điện thoại 10 số!!!");
+        document.getElementById("register-sdt").focus();
+        return;
+    }
+
     if(!password){
         alert("Phải nhập đầy đủ thông tin trên!!!");
         document.getElementById("register-password").focus();
@@ -53,7 +64,7 @@ document.querySelector(".register-btn").onclick = function() {
         name: name,
         phone: phone,
         password: password,
-        role: role
+        role: "Khách hàng"
     };
 
     accounts.push(newAcc);
