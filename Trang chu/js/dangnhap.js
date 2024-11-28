@@ -39,7 +39,7 @@ document.querySelector(".login-btn").onclick = function() {
 
     if (user) {
         if (user.role === "Admin") {
-            window.location.href = '/Admin/html/admin.html'
+            window.location.href = '../../Admin/html/admin.html'
         }
         
         alert("Đăng nhập thành công!");
