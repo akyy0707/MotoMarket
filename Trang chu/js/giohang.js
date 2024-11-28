@@ -234,5 +234,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function goToHomePage() {
-    window.location.href = "/Trang chu/html/trangchu.html";
+    window.location.href = "../../Trang chu/html/trangchu.html";
 }
