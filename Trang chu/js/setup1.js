@@ -162,7 +162,8 @@ const acc = [
         name: "admin",
         phone: "0914100004",
         password: "admin",
-        role: "Admin"
+        role: "Admin",
+        block: "no"
     },
     {
         makhachhang: 2,
@@ -170,7 +171,8 @@ const acc = [
         name: "ga",
         phone: "0966455917",
         password: "123",
-        role: "Khách hàng"
+        role: "Khách hàng",
+        block: "no"
     }
 ];
 

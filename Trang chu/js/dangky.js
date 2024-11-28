@@ -14,51 +14,73 @@ document.querySelector(".register-btn").onclick = function() {
     const password = document.getElementById("register-password").value;
     const phone = document.getElementById("register-sdt").value;
 
-    if(!name){
+    if (!name) {
         alert("Phải nhập đầy đủ thông tin trên!!!");
         document.getElementById("register-username").focus();
         return;
     }
 
-    if(name.length < 2){
+    if (name.length < 2) {
         alert("Tên phải có ít nhất 2 ký tự!");
         document.getElementById("register-username").focus();
         return;
     }
 
-    if(!gmail){
+    if (!gmail) {
         alert("Phải nhập đầy đủ thông tin trên!!!");
         document.getElementById("register-email").focus();
         return;
     }
 
     const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    if(!gmailRegex.test(gmail)){
+    if (!gmailRegex.test(gmail)) {
         alert("Gmail phải đúng định dạng @gmail.com!");
         document.getElementById("register-email").focus();
         return;
     }
 
-    if(!phone){
+    if (!phone) {
         alert("Phải nhập đầy đủ thông tin trên!!!");
         document.getElementById("register-sdt").focus();
         return;
     }
 
-    if(phone.length !== 10){
+    if (phone.length !== 10) {
         alert("Phải nhập đúng số điện thoại 10 số!!!");
         document.getElementById("register-sdt").focus();
         return;
     }
 
-    if(!password){
+    if (!password) {
         alert("Phải nhập đầy đủ thông tin trên!!!");
         document.getElementById("register-password").focus();
         return;
     }
 
     const accounts = JSON.parse(localStorage.getItem('acc')) || [];
-    
+
+    const trungten = accounts.some(acc => acc.name === name);
+    if (trungten) {
+        alert("Tên đăng nhập đã tồn tại! Vui lòng nhập tên đăng nhập khác.");
+        document.getElementById("register-username").focus();
+        return;
+    }
+
+    const trunggmail = accounts.some(acc => acc.gmail === gmail);
+    if (trunggmail) {
+        alert("Gmail đã tồn tại! Vui lòng nhập Gmail khác.");
+        document.getElementById("register-email").focus();
+        return;
+    }
+
+    const trungsdt = accounts.some(acc => acc.phone === phone);
+    if (trungsdt) {
+        alert("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác.");
+        document.getElementById("register-sdt").focus();
+        return;
+    }
+
+
     const newAcc = {
         gmail: gmail,
         name: name,
