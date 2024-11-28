@@ -203,11 +203,11 @@ input::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-#block-btn{
+.block-btn{
     width: 30%;
     height: 30px;
     color: white;
-    background-color: #007bff;
+    background-color: #064E3B;
     border-radius: 5px;
     border: rgb(0, 0, 0) 1px solid;
     cursor: pointer;

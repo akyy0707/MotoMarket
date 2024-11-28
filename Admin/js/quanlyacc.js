@@ -144,7 +144,8 @@ function renderListUsers() {
                 <td>
                     <button href='#' id="delete-btn" onclick='deleteUsers(${index})'>Xóa</button>
                     <button href='#' id="edit-btn" onclick='editUsers(${index})'>Sửa</button>
-                    <button href='#' id="block-btn" onclick='blockUsers(${index})'>Khóa</button>
+                  <button href='#' class ="block-btn" id="block-btn-${index}" onclick='blockUsers(${index})'>
+                        ${user.block === "yes" ? "Mở khóa" : "Khóa"}</button>
                 </td>
             </tr>
         `;
@@ -160,13 +161,15 @@ function blockUsers(id){
     if(users[id].block==="no"){
         users[id].block="yes";
         alert("Đã khóa tài khoản");
+     
        
     } else if(users[id].block==="yes") {
         users[id].block="no";
         alert("Đã mở khóa tài khoản");
-       
+     
     }
     localStorage.setItem('acc',JSON.stringify(users));
+    renderListUsers();
 }
 
 function deleteUsers(id) {
