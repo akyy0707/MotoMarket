@@ -1,5 +1,5 @@
 window.onload = function(){
-    const currAcc = JSON.parse(localStorage.getItem('currAcc'));
+    let currAcc = JSON.parse(localStorage.getItem('currAcc'));
     
     if(currAcc.role === 'Admin'){
         currAcc = {};

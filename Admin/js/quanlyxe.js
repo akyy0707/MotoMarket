@@ -57,8 +57,6 @@ function addProducts() {
             const imageSrc = event.target.result;
             let products = JSON.parse(localStorage.getItem('xeArr')) || [];
 
-       
-
             const newProduct = {
                 image: imageSrc,
                 name: name,
@@ -137,10 +135,10 @@ function editproducts(id) {
     const currentImage = document.getElementById("currentImage");
 
     // Hiển thị ảnh hiện tại, nếu không có ảnh, hiển thị ảnh mặc định
-    if (product.image && product.image !== "/image/logo.png") {
+    if (product.image && product.image !== '/image/logo.png') {
         currentImage.src = product.image;
     } else {
-        currentImage.src = "/image/logo.png";  // Đặt ảnh mặc định nếu không có ảnh
+        currentImage.src = '/image/logo.png';  // Đặt ảnh mặc định nếu không có ảnh
     }
 
     currentImage.setAttribute("data-deleted", "false");
@@ -178,7 +176,7 @@ function updateProduct(id) {
 
     // Kiểm tra trạng thái ảnh hiện tại
     if (currentImage.getAttribute("data-deleted") === "true") {
-        product.image = "/image/logo.png"; // Xóa ảnh thì đặt ảnh mặc định
+        product.image = '/image/logo.png'; // Xóa ảnh thì đặt ảnh mặc định
     }
 
     // Kiểm tra nếu có ảnh mới được tải lên
