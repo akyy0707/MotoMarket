@@ -19,6 +19,7 @@ function qlkd(){
     document.getElementById("qlxe").classList.add("hidden");
     document.getElementById("qldh").classList.add("hidden");
     document.getElementById("qlkh").classList.add("hidden");
+    window.onload(renderKDList());
 }
 
 function qldh(){

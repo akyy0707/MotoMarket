@@ -27,7 +27,7 @@ function addProducts() {
     const brand = document.getElementById('Hang').value;
     const type = document.getElementById('Loaixe').value;
     const description = document.getElementById('Mieuta').value;
-    const price = parseFloat(document.getElementById('Gia').value.replace(/,/g, ''));
+    const price = document.getElementById('GiaC').value;
     const imageInput = document.getElementById('upload');
     const file = imageInput.files[0];
     if ((name)==='') {
@@ -56,8 +56,6 @@ function addProducts() {
         reader.onload = function (event) {
             const imageSrc = event.target.result;
             let products = JSON.parse(localStorage.getItem('xeArr')) || [];
-
-       
 
             const newProduct = {
                 image: imageSrc,
@@ -132,15 +130,15 @@ function editproducts(id) {
     document.getElementById("HangC").value = product.brand;
     document.getElementById("LoaixeC").value = product.type;
     document.getElementById("MieutaC").value = product.description;
-    document.getElementById("GiaC").value = product.price.toLocaleString();
+    document.getElementById("GiaC").value = product.price;
 
     const currentImage = document.getElementById("currentImage");
 
     // Hiển thị ảnh hiện tại, nếu không có ảnh, hiển thị ảnh mặc định
-    if (product.image && product.image !== "/image/logo.png") {
+    if (product.image && product.image !== '/image/logo.png') {
         currentImage.src = product.image;
     } else {
-        currentImage.src = "/image/logo.png";  // Đặt ảnh mặc định nếu không có ảnh
+        currentImage.src = '/image/logo.png';  // Đặt ảnh mặc định nếu không có ảnh
     }
 
     currentImage.setAttribute("data-deleted", "false");
@@ -178,7 +176,7 @@ function updateProduct(id) {
 
     // Kiểm tra trạng thái ảnh hiện tại
     if (currentImage.getAttribute("data-deleted") === "true") {
-        product.image = "/image/logo.png"; // Xóa ảnh thì đặt ảnh mặc định
+        product.image = '/image/logo.png'; // Xóa ảnh thì đặt ảnh mặc định
     }
 
     // Kiểm tra nếu có ảnh mới được tải lên

@@ -1,10 +1,10 @@
 
 
 const addFormUser = document.getElementById('add-form-user');
-const changeFormUser = document.getElementById('change-form-user');
 
 function showAddFormUsers() {
     addFormUser.style.display = 'flex';
+    document.getElementById("header-form").textContent="Thêm người dùng";
 }
 
 function closeAddFormUsers() {
@@ -20,6 +20,8 @@ function closeAddFormUsers() {
         document.getElementById('Sdterror').innerHTML = '';
         document.getElementById('Tendangnhaperror').innerHTML = '';
         document.getElementById('Matkhauerror').innerHTML = '';
+        document.getElementById("Vaitro").value = "Khách hàng";
+
 }
 
 
@@ -27,19 +29,7 @@ function emailTest(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function regAdmin(){
-    let users = localStorage.getItem('acc') ? JSON.parse(localStorage.getItem('acc')) : [];
-        users.push({ 
-            gmail: "admin@gmail.com",
-            name: "admin",
-            phone: "0914100004",
-            password: "admin"
-        
-        });    
-        
-        localStorage.setItem('acc',JSON.stringify(users));
-        
-}
+
 
 function addUsers() {
     event.preventDefault(); 
@@ -48,6 +38,7 @@ function addUsers() {
     let tenuser = document.getElementById('Tendangnhap').value;
     let matkhau = document.getElementById('Matkhau').value;
     let userId = document.getElementById('userId').value;
+    let role = document.getElementById('Vaitro').value;
 
     // Kiểm tra các thông tin nhập vào
     if ((email)==='') {
@@ -84,7 +75,7 @@ function addUsers() {
         document.getElementById('Matkhauerror').innerHTML = '';
     }
 
-    if(tenuser&&email&&sdt&&matkhau){
+    if(tenuser&&email&&sdt&&matkhau&&role){
         let users = localStorage.getItem('acc') ? JSON.parse(localStorage.getItem('acc')) : [];
 
         if (users.some((u, i) => u.gmail === email && i !== parseInt(userId))) {
@@ -101,15 +92,7 @@ function addUsers() {
             alert("Tên đã tồn tại, vui lòng nhập tên khác!");
             return;
         }    
-if(users.length===0){
-    users.push({ 
-        gmail: "admin@gmail.com",
-        name: "admin",
-        phone: "0914100004",
-        password: "admin"
-    
-    });    
-};
+
         
         if (userId) {
             users[userId] = { 
@@ -117,6 +100,8 @@ if(users.length===0){
                 name: tenuser,
                 phone: sdt,
                 password: matkhau,
+                role: role,
+                block: "no"
              };
         } else {
             users.push({
@@ -124,6 +109,8 @@ if(users.length===0){
                 name: tenuser,
                 phone: sdt,
                 password: matkhau,
+                role: role,
+                block: "no"
             });
         }
 
@@ -135,7 +122,7 @@ if(users.length===0){
         document.getElementById("Sdt").value = '';
         document.getElementById("Tendangnhap").value = '';
         document.getElementById("Matkhau").value = '';
-
+        document.getElementById("Vaitro").value = "Khách hàng";
     }
 
 
@@ -145,7 +132,7 @@ function renderListUsers() {
 
 
 
-    users.slice(1).forEach((user, index) => {
+    users.forEach((user, index) => {
         tableContent += `
             <tr>
                 <td style="padding: 0; ">${index+1 }</td>
@@ -153,9 +140,12 @@ function renderListUsers() {
                 <td style="padding: 0; ">${user.phone}</td>
                 <td style="padding: 0; ">${user.name}</td>
                 <td style="padding: 0; ">${user.password}</td>
+                <td style="padding: 0; ">${user.role}</td>
                 <td>
-                    <button href='#' id="delete-btn" onclick='deleteUsers(${index+1})'>Xóa</button>
-                    <button href='#' id="edit-btn" onclick='editUsers(${index+1})'>Sửa</button>
+                    <button href='#' id="delete-btn" onclick='deleteUsers(${index})'>Xóa</button>
+                    <button href='#' id="edit-btn" onclick='editUsers(${index})'>Sửa</button>
+                  <button href='#' class ="block-btn" id="block-btn-${index}" onclick='blockUsers(${index})'>
+                        ${user.block === "yes" ? "Mở khóa" : "Khóa"}</button>
                 </td>
             </tr>
         `;
@@ -164,6 +154,22 @@ function renderListUsers() {
     document.getElementById('users-list').innerHTML = tableContent;
 
     renderKDList();
+}
+
+function blockUsers(id){
+    let users = localStorage.getItem('acc') ? JSON.parse(localStorage.getItem('acc')) : [];
+    if(users[id].block==="no"){
+        users[id].block="yes";
+        alert("Đã khóa tài khoản");
+     
+       
+    } else if(users[id].block==="yes") {
+        users[id].block="no";
+        alert("Đã mở khóa tài khoản");
+     
+    }
+    localStorage.setItem('acc',JSON.stringify(users));
+    renderListUsers();
 }
 
 function deleteUsers(id) {
@@ -183,8 +189,10 @@ function editUsers(id) {
     document.getElementById("Sdt").value = users[id].phone;
     document.getElementById("Matkhau").value = users[id].password;
     document.getElementById("userId").value = id;
+    document.getElementById("Vaitro").value=users[id].role;
 
 
     document.getElementById("update-user-btn").classList.remove("hidden");
     document.getElementById("add-user-btn").classList.add("hidden");
+    document.getElementById("header-form").textContent="Sửa người dùng";
 }

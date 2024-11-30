@@ -36,32 +36,38 @@ document.querySelector(".login-btn").onclick = function() {
 
     const user = accounts.find(account => account.gmail === gmail && account.password === password);
 
-
     if (user) {
-        if (user.name === "admin") {
-            window.location.href = '/Admin/html/admin.html'
+        if(user.block === "no"){
+            if (user.role === "Admin") {
+                window.location.href = '../../Admin/html/admin.html'
+            }
+            
+            alert("Đăng nhập thành công!");
+            
+            const currAcc = user;
+            localStorage.setItem('currAcc', JSON.stringify(currAcc));
+            
+            document.getElementById("khname").innerHTML = `
+                <p onmouseenter="hienthongtinkh()" onmouseout="anthongtinkh()">
+                    Tài khoản: ${currAcc.name}
+                </p>
+                <div class="noidung hidden" id="noidung">
+                    <h3>Thông tin khách hàng</h3>
+                    <p>Khách hàng: ${currAcc.name}</p>
+                    <p>Điện thoại: ${currAcc.phone}</p>
+                    <p>Email: ${currAcc.gmail}</p>
+                </div>`;
+            successLogin();
+            closeLogin();
+            giohang = true;
+        }else if(user.block==="yes"){
+            alert("Tài khoản của bạn đã bị khóa!!");
+            closeLogin();
         }
-        
-        alert("Đăng nhập thành công!");
-        
-        const currAcc = user;
-        localStorage.setItem('currAcc', JSON.stringify(currAcc));
-        
-        document.getElementById("khname").innerHTML = `
-            <p onmouseenter="hienthongtinkh()" onmouseout="anthongtinkh()">
-                Tài khoản: ${currAcc.name}
-            </p>
-            <div class="noidung hidden" id="noidung">
-                <h3>Thông tin khách hàng</h3>
-                <p>Khách hàng: ${currAcc.name}</p>
-                <p>Điện thoại: ${currAcc.phone}</p>
-                <p>Email: ${currAcc.gmail}</p>
-            </div>`;
-        successLogin();
-        closeLogin();
-        giohang = true;
-    } else {
+    } 
+    else {
         alert("Sai tên đăng nhập hoặc mật khẩu!");
+        closeLogin();
     }
 };
 

@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Website Bán Xe</title>
-    <link rel="stylesheet" href="/Admin/css/admin.css">
-    <link rel="stylesheet" href="/Admin/css/quanlykinhdoanh.css">
-    <link rel="stylesheet" href="/Admin/css/quanlydonhang.css">
-    <link rel="stylesheet" href="/Trang chu/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/quanlykinhdoanh.css">
+    <link rel="stylesheet" href="../css/quanlydonhang.css">
+    <link rel="stylesheet" href="../../Trang chu/fontawesome/css/all.min.css">
 </head>
 
 <body onload="renderListProducts()">
     <div class="sidebar">
         <div class="logo-container">
-            <img src="/image/logo.png" alt="Logo" class="logo">
+            <img src="../../image/logo.png" alt="Logo" class="logo">
         </div>
         <div class="menu">
             <h2>Admin</h2>
@@ -23,7 +23,7 @@
                 <li onclick="qlkh()"><a>Quản Lý Khách Hàng</a></li>
                 <li onclick="qldh()"><a>Quản Lý Đơn Hàng</a></li>
                 <li onclick="qlkd()"><a>Quản Lý Kinh Doanh</a></li>
-                <li><a href="/Trang chu/html/trangchu.html">Thoát</a></li>
+                <li><a href="../../Trang chu/html/trangchu.html">Thoát</a></li>
             </ul>
         </div>
     </div>
@@ -88,7 +88,7 @@
                 <br>
 
                 <label class="file-label">Ảnh
-                    <input type="file" name="upload" id="upload" accept="image/*" onchange="previewImage()" />
+                    <input type="file" name="upload" id="upload" accept="../../image/*" onchange="previewImage()" />
                 </label>
                 <div id="displayImg">
                 </div>
@@ -115,7 +115,7 @@
                 <label>Loại xe</label>
                 <select id="LoaixeC" name="Loaixe">
                     <option value="tay ga"> Xe tay ga </option>
-                    <option value="xe so"> Xe số </option>
+                    <option value="xe số"> Xe số </option>
                 </select>
                 <br>
 
@@ -162,6 +162,7 @@
                         <th>Số điện thoại</th>
                         <th>Tên đăng nhập</th>
                         <th>Mật khẩu</th>
+                        <th>Vai trò</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -172,8 +173,10 @@
 
         <div class="form-popup" id="add-form-user">
             <form id="add-user-form" class="popup-form">
-                <h2>Thêm người dùng</h2>
-
+            
+                <h2 id="header-form">Thêm người dùng</h2>
+  
+         
                 <label>Địa chỉ email</label>
                 <input type="text" name="Email" id="Email">
                 <span id="Emaillerror" class="error"></span>
@@ -192,6 +195,12 @@
                 <label>Mật khẩu</label>
                 <input type="text" name="Matkhau" id="Matkhau">
                 <span id="Matkhauerror" class="error"></span>
+
+                <select id="Vaitro" name="Vaitro">
+                    <option value="Khách hàng"> Khách hàng </option>
+                    <option value="Admin"> Admin </option>
+                </select>
+            
 
                 <input type="hidden" id="userId">
                 <br><br>
@@ -441,11 +450,11 @@
     </div>
 
 
-    <script src="/Admin/js/quanlyxe.js"></script>
-    <script src="/Admin/js/quanly.js"></script>
-    <script src="/Admin/js/quanlyacc.js"></script>
-    <script src="/Admin/js/quanlydonhang.js"></script>
-    <script src="/Admin/js/quanlykinhdoanh.js"></script>
+    <script src="../js/quanlyxe.js"></script>
+    <script src="../js/quanly.js"></script>
+    <script src="../js/quanlyacc.js"></script>
+    <script src="../js/quanlydonhang.js"></script>
+    <script src="../js/quanlykinhdoanh.js"></script>
 </body>
 
 </html>
