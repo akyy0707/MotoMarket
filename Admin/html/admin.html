@@ -253,8 +253,8 @@
         </div>
 
         <section class="table-section">
-            <button class="add-btn" onclick="">Sắp xếp theo khoảng thời gian</button>
-            <button class="add-btn" onclick="">Lọc theo tình trạng đơn hàng</button>
+            <button class="add-btn" id="sort-by-date" onclick="filterByDate()">Sắp xếp theo khoảng thời gian</button>
+            <button class="add-btn" onclick="filterByStatus()">Lọc theo tình trạng đơn hàng</button>
             <br>
 
             <div id="TKTGian">
@@ -265,6 +265,17 @@
                     <input type="date" id="start-date">
                     <span>-</span>
                     <input type="date" id="end-date">
+                </div>
+                <div class="status" style="display: flex;">
+                    <span>
+                        <h2>Tình trạng đơn hàng:</h2>
+                    </span>
+                    <select name="status-selected" id="status-selected">
+                        <option value=">Chưa xử lý">Chưa xử lý</option>
+                        <option value="Đã xác nhận">Đã xác nhận</option>
+                        <option value="Đã Giao">Đã Giao</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
                 </div>
                 <table>
                     <thead>
@@ -287,10 +298,10 @@
             <div id="TTTDHang" class="hidden">
                 <div class="order-status">
                     <select name="orderStatus" id="orderStatus" disabled>
-                        <option value="unprocessed">Chưa xử lý</option>
-                        <option value="confirmed">Đã xác nhận</option>
-                        <option value="shipped">Đã Giao</option>
-                        <option value="cancelled">Đã hủy</option>
+                        <option value=">Chưa xử lý">Chưa xử lý</option>
+                        <option value="Đã xác nhận">Đã xác nhận</option>
+                        <option value="Đã Giao">Đã Giao</option>
+                        <option value="Đã hủy">Đã hủy</option>
                     </select>
                 </div>
                 <table>
