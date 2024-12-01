@@ -275,7 +275,7 @@
                     <span>-</span>
                     <input type="date" id="end-date">
                 </div>
-                <div class="status" style="display: flex;">
+                <!-- <div class="status" style="display: flex;">
                     <span>
                         <h2>Tình trạng đơn hàng:</h2>
                     </span>
@@ -285,7 +285,7 @@
                         <option value="Đã giao">Đã giao</option>
                         <option value="Đã hủy">Đã hủy</option>
                     </select>
-                </div>
+                </div> -->
                 <table>
                     <thead>
                         <tr>
@@ -305,11 +305,14 @@
             </div>
 
             <div id="TTTDHang" class="hidden">
-                <div class="order-status">
-                    <select name="orderStatus" id="orderStatus" disabled>
-                        <option value=">Chưa xử lý">Chưa xử lý</option>
+                <div class="status">
+                    <span>
+                        <h2>Tình trạng đơn hàng:</h2>
+                    </span>
+                    <select name="status-selected" id="status-selected" onchange="filterByStatus()">
+                        <option value="Chưa xử lý">Chưa xử lý</option>
                         <option value="Đã xác nhận">Đã xác nhận</option>
-                        <option value="Đã Giao">Đã Giao</option>
+                        <option value="Đã giao">Đã giao</option>
                         <option value="Đã hủy">Đã hủy</option>
                     </select>
                 </div>
@@ -325,7 +328,7 @@
                             <th>Chi tiết hoá đơn</th>
                         </tr>
                     </thead>
-                    <tbody id="bills-list">
+                    <tbody id="hd2list">
 
                     </tbody>
                 </table>

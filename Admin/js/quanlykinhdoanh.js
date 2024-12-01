@@ -29,7 +29,7 @@ function renderKDList() {
                     let orderDate = new Date(order.ngaymua);
 
                     if (
-                        order.trangthai === "Đã giao hàng" && 
+                        order.trangthai === "Đã giao" && 
                         (
                             (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
                             (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
@@ -94,7 +94,7 @@ function viewOrders(productName) {
             let orderDate = new Date(order.ngaymua);
 
             if (
-                order.trangthai === "Đã giao hàng" && 
+                order.trangthai === "Đã giao" && 
                 (
                     (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
                     (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
@@ -146,7 +146,7 @@ function filterOrdersByDate() {
                 let orderDate = new Date(order.ngaymua);
 
                 if (
-                    order.trangthai === "Đã giao hàng" && 
+                    order.trangthai === "Đã giao" && 
                     (
                         (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
                         (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
@@ -192,7 +192,7 @@ function updateBestAndWorstSelling(products, ds, tgMin, tgMax) {
                 let orderDate = new Date(order.ngaymua);
 
                 if (
-                    order.trangthai === "Đã giao hàng" && 
+                    order.trangthai === "Đã giao" && 
                     (
                         (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
                         (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||
@@ -255,7 +255,7 @@ function viewUserOrders(gmail) {
             let orderDate = new Date(order.ngaymua);
 
             if (
-                order.trangthai === "Đã giao hàng" && 
+                order.trangthai === "Đã giao" && 
                 (
                     (!isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate >= tgMin && orderDate <= tgMax) ||
                     (isNaN(tgMin.getTime()) && !isNaN(tgMax.getTime()) && orderDate <= tgMax) ||

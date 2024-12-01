@@ -24,7 +24,6 @@ body {
     padding-top: 40px;
 }
 
-
 .logo {
     width: 200px;
     height:auto;
@@ -53,8 +52,6 @@ margin-left: 20px;
 .sidebar ul li a:hover {
     background-color: #34495e;
 }
-
-
 
 .main-content {
     flex-grow: 1;
