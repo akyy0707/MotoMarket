@@ -6,12 +6,20 @@ function renderListBills(startDate = null, endDate = null, selectedStatus = null
         allBills = allBills.concat(billsData[email]);
     }
 
-    if (startDate && endDate) {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
+    if (startDate || endDate) {
+        const start = startDate ? new Date(startDate) : null;
+        const end = endDate ? new Date(endDate) : null;
+
         allBills = allBills.filter(bill => {
             const orderDate = new Date(bill.ngaymua);
-            return orderDate >= start && orderDate <= end;
+            if (start && end) {
+                return orderDate >= start && orderDate <= end;
+            } else if (start) {
+                return orderDate >= start;
+            } else if (end) {
+                return orderDate <= end;
+            }
+            return true;
         });
     }
 
@@ -25,7 +33,7 @@ function renderListBills(startDate = null, endDate = null, selectedStatus = null
     allBills.forEach((bill, index) => {
         tableContent += `
             <tr>
-                <td>${index+1}</td>
+                <td>${index + 1}</td>
                 <td>${bill.ten}</td>
                 <td>${bill.ngaymua}</td>
                 <td>${bill.diachi}</td>
@@ -54,16 +62,16 @@ function renderListBills(startDate = null, endDate = null, selectedStatus = null
 }
 
 function filterByDate() {
-    document.getElementById('TTTDHang').classList.add("hidden")
-    document.getElementById('TKTGian').classList.remove("hidden")
+    document.getElementById('TTTDHang').classList.add("hidden");
+    document.getElementById('TKTGian').classList.remove("hidden");
     const startDate = document.getElementById('start-date').value;
     const endDate = document.getElementById('end-date').value;
     renderListBills(startDate, endDate);
 }
 
 function filterByStatus() {
-    document.getElementById('TKTGian').classList.add("hidden")
-    document.getElementById('TTTDHang').classList.remove("hidden")
+    document.getElementById('TKTGian').classList.add("hidden");
+    document.getElementById('TTTDHang').classList.remove("hidden");
     const selectedStatus = document.getElementById('status-selected').value;
     renderListBills(null, null, selectedStatus);
 }
