@@ -38,7 +38,7 @@ function renderListBills(startDate = null, endDate = null, selectedStatus = null
                 <td>${bill.ngaymua}</td>
                 <td>${bill.diachi}</td>
                 <td>${bill.gia.toLocaleString()} VND</td>
-                <td>
+                <td class="order-status" style="width:170px">
                     <select 
                         name="orderStatus" 
                         data-email="${bill.email}" 
@@ -52,7 +52,7 @@ function renderListBills(startDate = null, endDate = null, selectedStatus = null
                             <option value="Đã hủy" ${bill.trangthai === "Đã hủy" ? "selected" : ""}>Đã hủy</option>
                     </select>
                 </td>
-                <td><button onclick="viewOrderDetails(${bill.id})">Xem đơn hàng</button></td>
+                <td><button class="view" onclick="viewOrderDetails(${bill.id})">Chi tiết</button></td>
             </tr>
         `;
     });
