@@ -1,13 +1,13 @@
 window.onload = function(){
     let currAcc = JSON.parse(localStorage.getItem('currAcc'));
     
-    if(currAcc.role === 'Admin'){
+    if(currAcc.role === 'Admin') {
         currAcc = {};
         localStorage.setItem('currAcc', JSON.stringify(currAcc));
         giohang = false;
     }
 
-    if(currAcc && Object.keys(currAcc).length > 0 && currAcc.name !== 'admin'){
+    if(currAcc && Object.keys(currAcc).length > 0 && currAcc.name !== 'admin') {
         document.getElementById("khname").innerHTML = `
             <p onmouseenter="hienthongtinkh()" onmouseout="anthongtinkh()">
                 Tài khoản: ${currAcc.name}

@@ -177,7 +177,6 @@ const acc = [
 ];
 
 localStorage.setItem('acc', JSON.stringify(acc));
-// localStorage.setItem('giohang', JSON.stringify([]));
 
 window.onload = function(){
     window.location.href = "trangchu.html";
