@@ -17,7 +17,6 @@ function advancedSearch(index) {
     switch(index) {
         case 1:
             setItem1();
-            // document.getElementById("search-box").value = '';
             document.getElementById("tatca").classList.add('active');
             break;
         case 2:

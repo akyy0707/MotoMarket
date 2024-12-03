@@ -1,12 +1,6 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
     hienthigiohang();
 });
-
-// document.getElementById("shopping").onclick = function(){
-//     hienthigiohang();
-// }
 
 function hienthigiohang() {
 
@@ -172,7 +166,6 @@ document.querySelector('.order-button').addEventListener('click', function () {
     hienthigiohang();
 });
 
-
 function xemtatcahoadon() {
     const currAcc = JSON.parse(localStorage.getItem("currAcc"));
     if (!currAcc) {
@@ -216,7 +209,6 @@ function xemtatcahoadon() {
     document.getElementById("danhsachhoadon").innerHTML = danhsachhoadon;
     document.getElementById("donhang").classList.remove("hidden");
 }
-
 
 function taigiohang() {
     const currAcc = JSON.parse(localStorage.getItem("currAcc"));

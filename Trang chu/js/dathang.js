@@ -1,9 +1,7 @@
-// Hiển thị hoặc ẩn form nhập địa chỉ mới
 function toggleAddressForm(showNewAddressForm) {
     document.getElementById("new-address-form").style.display = showNewAddressForm ? "block" : "none";
 }
 
-// Lưu địa chỉ mới vào LocalStorage
 function saveAddress() {
     const name = document.getElementById("name").value;
     const city = document.getElementById("city").value;
@@ -40,9 +38,7 @@ function loadSavedAddresses() {
     });
 }
 
-// Sử dụng địa chỉ đã lưu khi được chọn
 function useSavedAddress(event) {
-    // Ngăn chặn hành vi mặc định của nút khi nhấn vào
     event.preventDefault();
 
     const savedAddressesDropdown = document.getElementById("saved-addresses");
@@ -64,8 +60,6 @@ function useSavedAddress(event) {
     document.getElementById("address").value = selectedAddress.address;
 }
 
-
-// Thêm sự kiện cho các nút khi trang được tải
 document.addEventListener("DOMContentLoaded", function() {
     loadSavedAddresses();
 

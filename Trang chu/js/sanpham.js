@@ -83,19 +83,18 @@ function themvaogiohang(sanpham) {
     }
 
     const sl = parseInt(document.getElementById("soluong").value);
-    const giohangKey = `giohang_${currAcc.gmail}`; // Key cho giỏ hàng riêng của tài khoản
+    const giohangKey = `giohang_${currAcc.gmail}`;
     let giohang = JSON.parse(localStorage.getItem(giohangKey)) || [];
 
-    // Tìm sản phẩm trong giỏ hàng
     const index = giohang.findIndex(item => item.name === sanpham.name);
 
     if (index !== -1) {
-        giohang[index].sl += sl; // Cập nhật số lượng
+        giohang[index].sl += sl;
     } else {
-        giohang.push({ ...sanpham, sl }); // Thêm sản phẩm mới
+        giohang.push({ ...sanpham, sl });
     }
 
-    localStorage.setItem(giohangKey, JSON.stringify(giohang)); // Lưu giỏ hàng vào localStorage
+    localStorage.setItem(giohangKey, JSON.stringify(giohang));
     alert("Sản phẩm đã được thêm vào giỏ hàng.");
 
     document.getElementById("sanphamoverlay").classList.add("hidden");
