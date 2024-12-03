@@ -81,17 +81,17 @@
     width: 100%;
     height: 90%;
 }
-.hoadon {
+.donhang {
     padding-left: 5px;
-    border: 1px solid #7777773a;
+    /* border: 1px solid #7777773a; */
     margin-right: 5px;
     margin-top: 5px;
 }
-.hoadon p {
+.donhang p {
     margin-top: 5px;
     margin-bottom: 5px ;
 }
-.hoadon h3 {
+.donhang h3 {
     margin-top: 5px;
     margin-bottom: 5px ;
 }

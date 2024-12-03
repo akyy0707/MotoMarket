@@ -110,7 +110,7 @@ function viewOrderDetails(index) {
     }
 
     let ordersDetail = `
-        <div class="hoadon">
+        <div class="donhang">
             <h3>Đơn hàng của: ${bill.ten}</h3>
             <p>Email: ${bill.email}</p>
             <p>Số điện thoại: ${bill.sodienthoai}</p>
