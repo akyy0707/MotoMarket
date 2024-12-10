@@ -39,7 +39,10 @@ document.querySelector(".login-btn").onclick = function() {
     if (user) {
         if(user.block === "no"){
             if (user.role === "Admin") {
-                window.location.href = '../../Admin/html/admin.html'
+                alert("Tài khoản không thể đăng nhập ở trang hiện tại!!");
+                closeLogin();
+                return;
+                // window.location.href = '../../Admin/html/admin.html'
             }
             
             alert("Đăng nhập thành công!");
